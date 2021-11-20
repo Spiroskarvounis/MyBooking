@@ -38,11 +38,14 @@ public class Calendar {
 
 
         int tmp;
+        int count=0;
             for(String i:DaysPerMonth.keySet() ){
-                tmp=numberOfMonth.get(i)*100+DaysPerMonth.get(i);
-                AvailableDays.put(tmp,Boolean.TRUE);
-            }
+                for(int j=1;j<=DaysPerMonth.get(i);j++){
+                    tmp=numberOfMonth.get(i)*100+j;
+                    AvailableDays.put(tmp,Boolean.TRUE);
 
+                }
+            }
     }
 
     public HashMap<String, Integer> getDaysPerMonth() {
@@ -62,18 +65,15 @@ public class Calendar {
     }
 
     public Boolean rentDays(String monthArrive,String monthDeparture,int arrival,int departure){
-        monthArrive.toLowerCase();
-        monthDeparture.toLowerCase();
+        monthArrive=monthArrive.toLowerCase();
+        monthDeparture=monthDeparture.toLowerCase();
         arrival=numberOfMonth.get(monthArrive)*100+arrival;
         departure=numberOfMonth.get(monthDeparture)*100+arrival;
-        ArrayList<Integer> tmp=new ArrayList<>();
-        for(Integer i:AvailableDays.keySet()){
-            tmp.add(i);
-        }
+        ArrayList<Integer> tmp = new ArrayList<>(AvailableDays.keySet());
         Collections.sort(tmp);
         for(int i:tmp){
             if(i>=arrival && i<departure){
-                if(AvailableDays.get(i)==false) {
+                if(!AvailableDays.get(i)) {
                     return false;
                 }
             }
@@ -87,6 +87,8 @@ public class Calendar {
 
 
     }
+
+
 
 
 }

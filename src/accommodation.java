@@ -1,8 +1,10 @@
 import java.util.HashSet;
+import java.util.Scanner;
+
 public class accommodation {
     private int price;
     HashSet <String> characteristics;
-    private float SquareMetres;
+    private double SquareMetres;
     private int capacity;
     private String location;
     Calendar cal ;
@@ -27,7 +29,7 @@ public class accommodation {
 
 
 
-    public accommodation(int price, float squareMetres, int capacity, String location) {
+    public accommodation(int price, double squareMetres, int capacity, String location) {
         this.price = price;
         characteristics =new HashSet<String>();
         SquareMetres = squareMetres;
@@ -52,11 +54,11 @@ public class accommodation {
         this.characteristics = characteristics;
 
     }
-    public float getSquareMetres() {
+    public double getSquareMetres() {
         return SquareMetres;
     }
 
-    public void setSquareMetres(float squareMetres) {
+    public void setSquareMetres(double squareMetres) {
         SquareMetres = squareMetres;
     }
 
@@ -78,5 +80,11 @@ public class accommodation {
     }
     public void addCharacteristics(String s){
         characteristics.add(s);
+    }
+
+    public static void main(String[] args) {
+       hotel a=new hotel(12,4,32,"i am gofd",423);
+        System.out.println(a.cal.DaysPerMonth);
+
     }
 }
