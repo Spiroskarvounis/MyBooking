@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 
@@ -82,9 +83,70 @@ public class accommodation {
         characteristics.add(s);
     }
 
-    public static void main(String[] args) {
-       hotel a=new hotel(12,4,32,"i am gofd",423);
-        System.out.println(a.cal.DaysPerMonth);
+    public accommodation fillTheInformation(){
+
+        accommodation a=new hotel();
+        Scanner read=new Scanner(System.in);
+        int tmp1;
+        float tmp2;
+        System.out.println("Enter capacity");
+        tmp1=read.nextInt();
+        a.setCapacity(tmp1);
+        System.out.println("enter the price of each night");
+        tmp1=read.nextInt();
+        a.setPrice(tmp1);
+        //System.out.println(a.getPrice());
+        System.out.println("enter the square metres");
+        tmp2= read.nextFloat();;
+        a.setSquareMetres(tmp2);
+        //System.out.println(a.getSquareMetres());
+        System.out.println("enter the location");
+        String tmp3;
+        read.nextLine();
+        tmp3=read.nextLine();
+        a.setLocation(tmp3);
+        //System.out.println(a.getLocation());
+        System.out.println("enter the characteristics");
+        tmp3=read.nextLine();
+        while(!(tmp3.equals(""))){
+            a.addCharacteristics(tmp3);
+            //System.out.println(tmp3);
+            tmp3=read.nextLine();
+        }
+
+        return a;
+    }
+
+    public void printInformation(){
+        System.out.println("The location is "+getLocation());
+        System.out.println("The price of the night  is "+getPrice());
+        System.out.println("The square metres are "+getSquareMetres());
+        System.out.println("The capacity is "+getCapacity());
+        System.out.println("The resort offers:");
+        for(String i:characteristics){
+            System.out.println(i +"!");
+        }
+
+
+
 
     }
+
+    public static void main(String[] args) {
+
+        hotel a=new hotel();
+        a.cal.preferableDaysOfStay();
+        a.cal.preferableDaysOfStay();
+
+
+
+
+    }
+
+
+
+
+
+
+
 }

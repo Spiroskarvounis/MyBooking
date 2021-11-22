@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class hotel extends accommodation  {
     private int availableRooms;
     public hotel(){
@@ -15,5 +17,9 @@ public class hotel extends accommodation  {
 
     public void setAvailableRooms(int availableRooms) {
         this.availableRooms = availableRooms;
+    }
+    public void hotelInformation(){
+        Scanner read=new Scanner(System.in);
+        availableRooms=read.nextInt();
     }
 }
