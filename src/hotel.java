@@ -6,8 +6,8 @@ public class hotel extends accommodation  {
         super();
     }
 
-    public  hotel(int price, float squareMetres, int capacity, String location,int availableRooms){
-        super(price,squareMetres,capacity,location);
+    public  hotel(String name,int price, float squareMetres, int capacity, String location,int availableRooms){
+        super(name,price,squareMetres,capacity,location);
         this.availableRooms=availableRooms;
 
     }

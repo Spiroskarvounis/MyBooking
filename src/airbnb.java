@@ -1,4 +1,4 @@
-public class airbnb {
+public class airbnb extends accommodation {
 
 
 }

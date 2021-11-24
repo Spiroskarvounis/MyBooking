@@ -3,6 +3,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 
 public class accommodation {
+    private String name;
     private int price;
     HashSet <String> characteristics;
     private double SquareMetres;
@@ -30,7 +31,9 @@ public class accommodation {
 
 
 
-    public accommodation(int price, double squareMetres, int capacity, String location) {
+    public accommodation(String name,int price, double squareMetres, int capacity, String location) {
+
+        this.name=name;
         this.price = price;
         characteristics =new HashSet<String>();
         SquareMetres = squareMetres;
@@ -38,6 +41,14 @@ public class accommodation {
         this.location = location;
         cal=new Calendar();
         //img=new HashSet<Image>();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getPrice() {
@@ -84,29 +95,32 @@ public class accommodation {
     }
 
     public accommodation fillTheInformation(){
-
-        accommodation a=new hotel();
         Scanner read=new Scanner(System.in);
+        accommodation a=new hotel();
+        String tmp3;
+        System.out.println("Enter the name of the hotel.");
+        tmp3=read.nextLine();
+        a.setName(tmp3);
+        read.nextLine();
         int tmp1;
         float tmp2;
-        System.out.println("Enter capacity");
+        System.out.println("Enter capacity of the facility.");
         tmp1=read.nextInt();
         a.setCapacity(tmp1);
-        System.out.println("enter the price of each night");
+        System.out.println("Enter the price of each night.");
         tmp1=read.nextInt();
         a.setPrice(tmp1);
         //System.out.println(a.getPrice());
-        System.out.println("enter the square metres");
+        System.out.println("Enter the square metres.");
         tmp2= read.nextFloat();;
         a.setSquareMetres(tmp2);
         //System.out.println(a.getSquareMetres());
-        System.out.println("enter the location");
-        String tmp3;
+        System.out.println("Enter the location.");
         read.nextLine();
         tmp3=read.nextLine();
         a.setLocation(tmp3);
         //System.out.println(a.getLocation());
-        System.out.println("enter the characteristics");
+        System.out.println("Enter the characteristics.");
         tmp3=read.nextLine();
         while(!(tmp3.equals(""))){
             a.addCharacteristics(tmp3);
@@ -134,9 +148,9 @@ public class accommodation {
 
     public static void main(String[] args) {
 
-        hotel a=new hotel();
-        a.cal.preferableDaysOfStay();
-        a.cal.preferableDaysOfStay();
+        provider  a=new provider();
+
+
 
 
 
