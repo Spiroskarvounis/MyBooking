@@ -26,6 +26,7 @@ public class accommodation {
     public accommodation(){
         characteristics=new HashSet<String>();
         cal=new Calendar();
+        fillTheInformation();
         //img=new HashSet<Image>();
     }
 
@@ -94,49 +95,51 @@ public class accommodation {
         characteristics.add(s);
     }
 
-    public accommodation fillTheInformation(){
+    public void fillTheInformation(){
         Scanner read=new Scanner(System.in);
-        accommodation a=new hotel();
+
+
+
         String tmp3;
-        System.out.println("Enter the name of the hotel.");
+        System.out.println("Enter the name of the facility.");
         tmp3=read.nextLine();
-        a.setName(tmp3);
-        read.nextLine();
+        setName(tmp3);
+        //read.nextLine();
         int tmp1;
         float tmp2;
         System.out.println("Enter capacity of the facility.");
         tmp1=read.nextInt();
-        a.setCapacity(tmp1);
+        setCapacity(tmp1);
         System.out.println("Enter the price of each night.");
         tmp1=read.nextInt();
-        a.setPrice(tmp1);
+        setPrice(tmp1);
         //System.out.println(a.getPrice());
         System.out.println("Enter the square metres.");
         tmp2= read.nextFloat();;
-        a.setSquareMetres(tmp2);
+        setSquareMetres(tmp2);
         //System.out.println(a.getSquareMetres());
         System.out.println("Enter the location.");
         read.nextLine();
         tmp3=read.nextLine();
-        a.setLocation(tmp3);
+        setLocation(tmp3);
         //System.out.println(a.getLocation());
         System.out.println("Enter the characteristics.");
         tmp3=read.nextLine();
         while(!(tmp3.equals(""))){
-            a.addCharacteristics(tmp3);
+            addCharacteristics(tmp3);
             //System.out.println(tmp3);
             tmp3=read.nextLine();
         }
 
-        return a;
     }
 
     public void printInformation(){
+        System.out.println("The name of the facility is "+getName());
         System.out.println("The location is "+getLocation());
         System.out.println("The price of the night  is "+getPrice());
         System.out.println("The square metres are "+getSquareMetres());
         System.out.println("The capacity is "+getCapacity());
-        System.out.println("The resort offers:");
+        System.out.println("The special characteristics of the resort are:");
         for(String i:characteristics){
             System.out.println(i +"!");
         }
@@ -149,6 +152,11 @@ public class accommodation {
     public static void main(String[] args) {
 
         provider  a=new provider();
+        provider  b=new provider();
+        AccommodationManagement em=new AccommodationManagement();
+        em.addProvider(a);
+        em.addProvider(b);
+        em.showBuildingsPerProvider();
 
 
 

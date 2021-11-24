@@ -10,10 +10,11 @@ public class provider {
 
     public provider(){
         buildings=new ArrayList<>();
-        System.out.println("Please insert the type of rental (sort or long) and the type of accommodation you will provide.");
-        String type1=readTypeOfRental();
+        String type1="yes";
         String type2;
         while( !type1.equals("no")){
+            System.out.println("Please insert the type of rental (sort or long) and the type of accommodation you will provide.");
+            type1=readTypeOfRental();
             type2=readTypeOfAccomodation();
             accommodation a;
             if(type2.equals("hotel")){
@@ -27,7 +28,7 @@ public class provider {
 
             }
             buildings.add(a);
-            System.out.println("Do you have more to offer? If so,please fill the formula ,or type no.");
+            System.out.println("Do you have more to offer? If so,type yes ,else type no.");
             type1=readTypeOfRental();
         }
 
@@ -80,5 +81,10 @@ public class provider {
         return type;
     }
 
+    public void showBuildings(){
+        for(accommodation i:buildings){
+            i.printInformation();
+        }
+    }
 
 }

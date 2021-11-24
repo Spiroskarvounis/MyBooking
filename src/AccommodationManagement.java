@@ -18,6 +18,11 @@ public class AccommodationManagement extends provider{
     public void addProvider(provider tmp){
         providers.add(tmp);
     }
-
+     public void showBuildingsPerProvider(){
+        for(provider i:providers){
+            System.out.println("This providers offers:");
+            i.showBuildings();
+        }
+     }
 
 }
