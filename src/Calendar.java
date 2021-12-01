@@ -104,14 +104,15 @@ public class Calendar {
                 }
             }
         }
-        for(int i:tmp){
-            if(i>=arrival && i<departure){
-                AvailableDays.replace(i,false);
+        if(returnType){
+            for(int i:tmp){
+                if(i>=arrival && i<departure){
+                    AvailableDays.replace(i,false);
+                }
             }
         }
-
-    showRentDays(monthArrive,monthDeparture,arrival%100,departure%100,returnType);
-    return returnType;
+        showRentDays(monthArrive,monthDeparture,arrival%100,departure%100,returnType);
+        return returnType;
     }
 
     public void showRentDays(String monthArrive,String monthDeparture,int arrival,int departure,boolean returnType){
@@ -153,8 +154,6 @@ public class Calendar {
             dateD=read.nextInt();
         }
         rentDays(monAr,monD,dateAr,dateD);
-
-
     }
 
 }
