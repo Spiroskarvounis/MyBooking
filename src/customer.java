@@ -27,7 +27,9 @@ public class customer {
     public boolean searchAccommodationByName(String name){
         for(provider i:duplicate){
             for(accommodation j:i.buildings){
+
                 if(name.equals(j.getName())){
+
                     return true;
                 }
             }
@@ -85,7 +87,7 @@ public class customer {
                 }*/
                 System.out.println(found);
                 if(found==charact.size()){
-                    System.out.println("The resort "+j.getName()+" offers the characteristics you ask for.You can now search the name of the resort.");
+                    System.out.println("The resort "+j.getName()+" offers the characteristics you ask for.");
                     returnType=true;
                 }
             }

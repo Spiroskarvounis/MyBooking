@@ -15,7 +15,11 @@ public class hotel extends accommodation  {
      */
     public hotel(){
         super();
-        hotelInformation();
+        //hotelInformation();
+    }
+    public hotel(int availableRooms,accommodation a){
+        super(a.getName(),a.getPrice(),a.getSquareMetres(),a.getCapacity(),a.getLocation(),a.getCharacteristics());
+        this.availableRooms=availableRooms;
     }
 
     /**

@@ -9,7 +9,8 @@ public class provider {
      */
     private String typeOfRental;
     private String typeOfAccommodation;
-    ArrayList <accommodation> buildings;
+    private String username;
+    public  ArrayList <accommodation> buildings;
 
     /**
      * default consructor
@@ -39,6 +40,7 @@ public class provider {
                  a=new accommodation();
 
             }
+            a.fillTheInformation();
             buildings.add(a);
             System.out.println("Do you have more to offer? If so,type yes ,else type no.");
             continueAdding=read.nextLine();
@@ -52,11 +54,20 @@ public class provider {
      * a constructor that initializes the parameters
      */
 
-    public provider(String typeOfRental, String typeOfAccommodation,ArrayList<accommodation> accommodations) {
+    public provider(String username,String typeOfRental, String typeOfAccommodation,ArrayList<accommodation> accommodations) {
         this.typeOfRental = typeOfRental;
         this.typeOfAccommodation = typeOfAccommodation;
+        this.username=username;
         buildings=accommodations;
 
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public ArrayList<accommodation> getBuildings() {

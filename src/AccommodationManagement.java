@@ -3,7 +3,7 @@ import java.util.HashMap;
 
 public class AccommodationManagement {
     // an array list that contains all the providers and each provider has it own accommodation
-    static ArrayList<provider> providers;
+    public static ArrayList<provider> providers;
 
     /**
      * default constructor
@@ -31,6 +31,7 @@ public class AccommodationManagement {
         for(provider i:providers){
             System.out.println("This providers offers:");
             i.showBuildings();
+            System.out.println("\n");
         }
      }
 
