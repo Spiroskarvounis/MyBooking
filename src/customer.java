@@ -49,7 +49,7 @@ public class customer {
         for(provider i:duplicate){
             for(accommodation j:i.buildings){
                 if(j.getPrice()>minimum && j.getPrice()<maximum){
-                    System.out.println("The resort "+ j.getName() +" is between your price ranges.You can now search the resort to see the further information!");
+                    System.out.println("The resort '"+ j.getName() +"' is between your price ranges.You can now search the resort to see the further information!");
                     returnType=true;
                 }
             }
@@ -70,7 +70,7 @@ public class customer {
             for(accommodation j:i.buildings){
                 found=0;
                 for(String k:charact){
-                    System.out.println(j.characteristics.contains(k));
+                    //System.out.println(j.characteristics.contains(k));
                     if(j.characteristics.contains(k)){
                         found++;
                         returnType=true;
@@ -85,9 +85,9 @@ public class customer {
                         }
                     }
                 }*/
-                System.out.println(found);
+                //System.out.println(found);
                 if(found==charact.size()){
-                    System.out.println("The resort "+j.getName()+" offers the characteristics you ask for.");
+                    System.out.println("The resort '"+j.getName()+"' offers the characteristics you ask for.");
                     returnType=true;
                 }
             }
@@ -106,7 +106,7 @@ public class customer {
         for(provider i:duplicate){
             for(accommodation j:i.buildings){
                 if(j.getLocation().equals(location)){
-                    System.out.println("The "+j.getName()+" is at this area.You can now search the name of the resort.");
+                    System.out.println("The '"+j.getName()+"' is at this area.You can now search the name of the resort.");
                     returnType=true;
                 }
             }

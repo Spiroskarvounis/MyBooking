@@ -7,7 +7,7 @@ public class provider {
      * @typeOfAccommodation hotel,airbnb or anything else
      * @builings an array list that contains all the building of each provider
      */
-    private String typeOfRental;
+
     private String typeOfAccommodation;
     private String username;
     public  ArrayList <accommodation> buildings;
@@ -23,17 +23,14 @@ public class provider {
         Scanner read=new Scanner(System.in);
         buildings=new ArrayList<>();
         String continueAdding="yes";
-        String type1="yes";
-        String type2;
+        String type;
         while( !continueAdding.equals("no")){
-            System.out.println("Please insert the type of rental (sort or long) and the type of accommodation you will provide.");
-            type1=readTypeOfRental();
-            type2=readTypeOfAccommodation();
+            type=readTypeOfAccommodation();
             accommodation a;
-            if(type2.equals("hotel")){
+            if(type.equals("hotel")){
                 a =new hotel();
             }
-            else  if(type2.equals("airbnb")){
+            else  if(type.equals("airbnb")){
                a=new airbnb();
             }
             else {
@@ -54,8 +51,7 @@ public class provider {
      * a constructor that initializes the parameters
      */
 
-    public provider(String username,String typeOfRental, String typeOfAccommodation,ArrayList<accommodation> accommodations) {
-        this.typeOfRental = typeOfRental;
+    public provider(String username, String typeOfAccommodation,ArrayList<accommodation> accommodations) {
         this.typeOfAccommodation = typeOfAccommodation;
         this.username=username;
         buildings=accommodations;
@@ -78,16 +74,6 @@ public class provider {
         this.buildings = buildings;
     }
 
-
-
-    public String getTypeOfRental() {
-        return typeOfRental;
-    }
-
-    public void setTypeOfRental(String typeOfRental) {
-        this.typeOfRental = typeOfRental;
-    }
-
     public String getTypeOfAccommodation() {
         return typeOfAccommodation;
     }
@@ -102,17 +88,24 @@ public class provider {
      */
     public String readTypeOfAccommodation(){
         Scanner read=new Scanner(System.in);
-        System.out.println("We provide hotel and airbnb accommodation.If you would like to add other type just type and our admin will think about it!");
+        System.out.println("We provide hotel and airbnb accommodation. Type 'hotel' or 'airbnb'");
         String type=read.nextLine();
+        while (!type.equals("hotel") && !type.equals("airbnb")){
+            System.out.println("Wrong choice! Type 'hotel' or 'airbnb'");
+            type=read.nextLine();
+        }
         this.typeOfAccommodation=type;
         return type;
 
     }
 
+
     /**
      * reading the type of rental from the user
      * @return the type of rental
      */
+
+    /*
     public String readTypeOfRental(){
         Scanner read=new Scanner(System.in);
         //System.out.println("Decide if your facilites will be rented for sort or long time(type sort or long)");
@@ -120,6 +113,7 @@ public class provider {
         this.typeOfRental=type;
         return type;
     }
+    */
 
     /**
      * prints the information of the building of each provider

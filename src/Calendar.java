@@ -5,6 +5,10 @@ public class Calendar {
     HashMap<String,Integer> numberOfMonth;
     HashMap<Integer,Boolean> AvailableDays;
     HashSet <String> Months;
+
+    /**
+     * constructor of the calendar that initializes all the months and their dates
+     */
     public Calendar(){
         DaysPerMonth=new HashMap<>();
         AvailableDays =new HashMap<>();
@@ -87,6 +91,15 @@ public class Calendar {
         return tmp;
     }
 
+    /**
+     * this function checks if the user can book in the given dates
+     * @param monthArrive the month of arrival
+     * @param monthDeparture the month of departure
+     * @param arrival the day of arrival
+     * @param departure the day of departure
+     * @return if it is possible to book these days
+     */
+
     public Boolean rentDays(String monthArrive,String monthDeparture,int arrival,int departure){
         arrival=numberOfMonth.get(monthArrive)*100+arrival;
         departure=numberOfMonth.get(monthDeparture)*100+departure;
@@ -115,6 +128,9 @@ public class Calendar {
         return returnType;
     }
 
+    /**
+     * this function shows the date that the user booked if it is possible else it tells him/her to change it
+     */
     public void showRentDays(String monthArrive,String monthDeparture,int arrival,int departure,boolean returnType){
         if(returnType)
             System.out.println("Your visit in our place will last from "+arrival + " of "+monthArrive+" to "+ departure +" of "+monthDeparture+"!");
@@ -126,34 +142,42 @@ public class Calendar {
         }
 
     }
-    public void preferableDaysOfStay(){
-        String monAr,monD;
-        int dateAr,dateD;
-        Scanner read=new Scanner(System.in);
-        System.out.println("Please enter the month  of the arrival");
-        monAr=read.nextLine();
-        monAr=monAr.toLowerCase();
-        monAr=monAr.replaceAll(" ","");
-        System.out.println("Please enter the date  of the arrival");
-        dateAr=read.nextInt();
-        while(dateAr>DaysPerMonth.get(monAr)){
-            System.out.println("Please insert a valid date between 1 and "+ DaysPerMonth.get(monAr));
-            dateAr=read.nextInt();
-          }
 
-            read.nextLine();
-        System.out.println("Please enter the month of the departure");
-        monD=read.nextLine();
-        monD=monD.toLowerCase();
-        monD=monD.replaceAll(" ","");
-       // read.nextLine();
-        System.out.println("Please enter the date of the departure");
-        dateD=read.nextInt();
-        while(dateD>DaysPerMonth.get(monD)){
-            System.out.println("Please insert a valid date between 1 and "+ DaysPerMonth.get(monD));
+    /**
+     * this function asks the user for the dates he wants to book
+     */
+    public void preferableDaysOfStay(){
+        String monAr="june",monD="march";
+        int dateAr=45,dateD=14;
+        Scanner read=new Scanner(System.in);
+        boolean check=true;
+        while (check){
+            System.out.println("Please enter the month  of the arrival");
+            monAr=read.nextLine();
+            monAr=monAr.toLowerCase();
+            monAr=monAr.replaceAll(" ","");
+            System.out.println("Please enter the date  of the arrival");
+            dateAr=read.nextInt();
+            while(dateAr>DaysPerMonth.get(monAr)){
+                System.out.println("Please insert a valid date between 1 and "+ DaysPerMonth.get(monAr));
+                dateAr=read.nextInt();
+              }
+
+                read.nextLine();
+            System.out.println("Please enter the month of the departure");
+            monD=read.nextLine();
+            monD=monD.toLowerCase();
+            monD=monD.replaceAll(" ","");
+           // read.nextLine();
+            System.out.println("Please enter the date of the departure");
             dateD=read.nextInt();
+            while(dateD>DaysPerMonth.get(monD)){
+                System.out.println("Please insert a valid date between 1 and "+ DaysPerMonth.get(monD));
+                dateD=read.nextInt();
+            }
+            read.nextLine();
+            check = !rentDays(monAr,monD,dateAr,dateD);
         }
-        rentDays(monAr,monD,dateAr,dateD);
     }
 
 }

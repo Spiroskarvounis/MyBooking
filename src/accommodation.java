@@ -2,14 +2,15 @@ import java.util.*;
 
 public class accommodation {
     /**
-     * @name the name of the facilie(hotel,airbnb or anything else)
-     * @price the price of each night
-     * @characteristics the characteristics of the resort(they are stored in a hash set</string>)
-     * @SquareMetre the size of the facility
-     * @capacity the number of people that can host
-     * @location the location of the facility
-     * @cal an object cal that show the availability of the facility
+     * @param name the name of the facility(hotel,airbnb or anything else)
+     * @param price the price of each night
+     * @param characteristics the characteristics of the resort(they are stored in a hash set</string>)
+     * @param SquareMetre the size of the facility
+     * @param capacity the number of people that can host
+     * @param location the location of the facility
+     * @param cal an object cal that show the availability of the facility
      */
+
     private String name;
     private int price;
     HashSet <String> characteristics;
@@ -77,8 +78,8 @@ public class accommodation {
 
     public void setCharacteristics(HashSet<String> characteristics) {
         this.characteristics = characteristics;
-
     }
+
     public double getSquareMetres() {
         return SquareMetres;
     }
@@ -145,7 +146,7 @@ public class accommodation {
         tmp3=read.nextLine();
         setLocation(tmp3);
         //System.out.println(a.getLocation());
-        System.out.println("Enter the characteristics.");
+        System.out.println("Enter the characteristics.(double 'enter' to stop)");
         tmp3=read.nextLine();
         while(!(tmp3.equals(""))){
             addCharacteristics(tmp3);

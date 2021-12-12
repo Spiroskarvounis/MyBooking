@@ -4,17 +4,17 @@ import java.util.*;
 public class Interface {
     AccommodationManagement a=new AccommodationManagement();
     ArrayList<user> users = new ArrayList<>();
-    user newUser = new user();
     HashMap<String,String> login_info = new HashMap<>();
 
     Scanner input = new Scanner(System.in);
     int age, type, choice;
     String in, gender, name, surname, username, password;
 
-    /*
-        In this constructor we initialize the three different users
+    /**
+     *This function takes all the characteristics of a provider and his hotel/airbnb and creates him.
+     * @return the new provider
      */
-    public provider createProvider(String name,int price,int squareMetres,int capacity,String location,HashSet characteristics,String type,String username,String typeOfRental){
+    public provider createProvider(String name,int price,int squareMetres,int capacity,String location,HashSet characteristics,String type,String username){
         ArrayList<accommodation> resorts=new ArrayList<>();
         hotel hotel;
         airbnb airbnb;
@@ -28,9 +28,20 @@ public class Interface {
             airbnb=new airbnb(d);
             resorts.add(airbnb);
         }
-        provider prov=new provider(username,typeOfRental,type,resorts);
+        provider prov=new provider(username,type,resorts);
         return prov;
     }
+
+    /**
+     * This is a constructor of the class {@link Interface} in which we initialize 3 providers with 1 hotel/airbnb each, 1 customer and 1 admin.
+     *<p>
+     * - Name: "nikos", Surname: "pappas", Username: "nikpap", Password:"pap1992", Type: provider, Gender: male, Age: 29<p>
+     * - Name: "sakis", Surname: "tanimanidis", Username: "saktan", Password:"sakis111", Type: provider, Gender: male, Age: 43<p>
+     * - Name: "eleanna", Surname: "kontou", Username: "helen", Password:"elekont", Type: provider, Gender: female, Age: 35<p>
+     * - Name: "john", Surname: "karas", Username: "johnk", Password:"john123", Type: customer, Gender: male, Age: 45<p>
+     * - Name: "maria", Surname: "theodorou", Username: "mtheo", Password:"123maria", Type: admin, Gender: female, Age: 37
+     *
+     */
     public Interface(){
 
         addUser(29,1,"male","nikos","pappas","nikpap","pap1992");
@@ -38,27 +49,27 @@ public class Interface {
         characteristics.add("pool");
         characteristics.add("parking");
         characteristics.add("wifi");
-        a.addProvider(createProvider("palace",30,600,1000,"saint louis",characteristics,"hotel","pappas","sort"));
-        addUser(43,1,"male","sakis","tanimanidis","trelopaoki","manasou");
+        a.addProvider(createProvider("palace",30,600,1000,"saint louis",characteristics,"hotel","pappas"));
+        addUser(43,1,"male","sakis","tanimanidis","saktan","sakis111");
         characteristics.clear();
         characteristics.add("wifi");
         characteristics.add("massage");
         characteristics.add("private chef");
-        a.addProvider(createProvider("sun",70,1500,400,"bali",characteristics,"hotel","trelopaoki","sort"));
-        addUser(35,1,"female","eleanna","mavrigiannaki","barbi","trash22");
+        a.addProvider(createProvider("sun",70,1500,400,"bali",characteristics,"hotel","saktan"));
+        addUser(35,1,"female","eleanna","kontou","helen","elekont");
         characteristics.clear();
         characteristics.add("big rooms");
         characteristics.add("central heat");
         characteristics.add("quiet");
-        a.addProvider(createProvider("wooden house",20,63,2,"kamara",characteristics,"airbnb","barbi","long"));
+        a.addProvider(createProvider("wooden house",20,63,2,"kastoria",characteristics,"airbnb","elekont"));
 
         addUser(45,2,"male","john","karas","johnk","john123");
-        addUser(37,3,"female","maria","theodorou","mtheo","123maria456");
+        addUser(37,3,"female","maria","theodorou","mtheo","123maria");
+
     }
 
     /**
-     *The function {@link Interface#addUser(int, int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)}
-     *adds a new user at the array list of users, using the setters of the class {@link user}.
+     *This function adds a new user at the array list of users, using the setters of the class {@link user}.
      * It also stores the new user's username and password in the hash map used for the login.
      *
      * @param age age of the user
@@ -71,16 +82,15 @@ public class Interface {
      */
 
     public void addUser(int age, int type, String gender, String name, String surname, String username, String password){
-        newUser.setAge(age);
-        newUser.setGender(gender);
-        newUser.setName(name);
-        newUser.setSurname(surname);
-        newUser.setType(type);
-        newUser.setUsername(username);
-        newUser.setPassword(password);
+
+        user newUser = new user(name, surname, username, password, gender, type, age);
         users.add(newUser);
         login_info.put(newUser.getUsername(), newUser.getPassword());
     }
+
+    /**
+     * This function is about the login menu. We ask the user if he/she wants to log in or register and then we ask for the further information we need
+     */
 
      public void menu() {
 
@@ -138,19 +148,10 @@ public class Interface {
 
          }
 
-         for (user user : users)
-             if ( username.equals(user.getUsername()))
+         for (user user : users) {
+             if (username.equals(user.getUsername()))
                  type = user.getType();
-
-
-         if (type==1){
-
          }
-         else if (type==2){
 
-         }
-         else {
-
-         }
      }
 }
