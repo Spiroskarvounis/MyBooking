@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -7,6 +8,10 @@ import java.util.Scanner;
  */
 
 public class Main {
+
+    private JButton choice;
+    private JCheckBox checkBox1;
+
     public static void main(String[] args) {
         Scanner input =new Scanner(System.in);
         int choice, start,finish;
@@ -16,6 +21,7 @@ public class Main {
         run.menu();
 
         customer cust=new customer(run.a.getProviders());
+
 
         if (run.type==1){
             provider d=new provider();
@@ -39,8 +45,7 @@ public class Main {
                     System.out.println("Type the name you want: ");
                     name = input.nextLine();
                     if (cust.searchAccommodationByName(name))
-                        cust.resevation(name);
-                }
+                        cust.resevation(name);                }
             } else {
                 System.out.println("Type the location of the accommodation: ");
                 location = input.nextLine();
@@ -72,6 +77,7 @@ public class Main {
                         System.out.println("Price: "+run.a.getProviders().get(i).buildings.get(j).getPrice());
                         System.out.println("Capacity: "+run.a.getProviders().get(i).buildings.get(j).getCapacity());
                         System.out.println("Square metres: "+run.a.getProviders().get(i).buildings.get(j).getSquareMetres());
+                        System.out.println(run.a.getProviders().get(i).buildings.get(j).getCharacteristics());
                         System.out.println("\n");
                     }
                 }
@@ -79,5 +85,6 @@ public class Main {
         }
 
     }
+
 }
 

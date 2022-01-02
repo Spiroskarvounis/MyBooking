@@ -1,6 +1,9 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;  // Import the Scanner class
+import javax.swing.*;
 public class provider {
     /**
      * @typeOfRental long or sort term rent
@@ -11,6 +14,7 @@ public class provider {
     private String typeOfAccommodation;
     private String username;
     public  ArrayList <accommodation> buildings;
+    private JTextField textField1;
 
     /**
      * default consructor
@@ -37,14 +41,18 @@ public class provider {
                  a=new accommodation();
 
             }
-            a.fillTheInformation();
             buildings.add(a);
             System.out.println("Do you have more to offer? If so,type yes ,else type no.");
             continueAdding=read.nextLine();
         }
 
 
+        textField1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
+            }
+        });
     }
 
     /**
@@ -123,6 +131,5 @@ public class provider {
             i.printInformation();
         }
     }
-
 
 }

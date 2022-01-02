@@ -1,27 +1,126 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Scanner;
 
 public class customer {
+    private String monAr,monD;
+    private int dateAr,dateD;
+    public ArrayList<provider> duplicate;
+    HashMap<String,Integer> DaysPerMonth;
 
-    ArrayList<provider> duplicate;
 
     public customer(ArrayList<provider> original){
+        DaysPerMonth=new HashMap<>();
+        DaysPerMonth.put("january",31);
+        DaysPerMonth.put("february",28);
+        DaysPerMonth.put("march",31);
+        DaysPerMonth.put("april",30);
+        DaysPerMonth.put("may",31);
+        DaysPerMonth.put("june",30);
+        DaysPerMonth.put("july",31);
+        DaysPerMonth.put("august",31);
+        DaysPerMonth.put("september",30);
+        DaysPerMonth.put("october",31);
+        DaysPerMonth.put("november",30);
+        DaysPerMonth.put("december",31);
         duplicate=original;
     }
 
+
     public ArrayList<provider> getDuplicate() {
         return duplicate;
+    }
+
+    public String getMonD() {
+        return monD;
+    }
+
+    public void setMonD(String monD) {
+        this.monD = monD;
+    }
+
+    public int getDateAr() {
+        return dateAr;
+    }
+
+    public void setDateAr(int dateAr) {
+        this.dateAr = dateAr;
+    }
+
+    public int getDateD() {
+        return dateD;
+    }
+
+    public void setDateD(int dateD) {
+        this.dateD = dateD;
+    }
+
+    public String getMonAr() {
+        return monAr;
+    }
+
+    public void setMonAr(String monAr) {
+        this.monAr = monAr;
     }
 
     public void setDuplicate(ArrayList<provider> duplicate) {
         this.duplicate = duplicate;
     }
 
+    public String readMonAr(){
+        Scanner read=new Scanner(System.in);
+        System.out.println("Please enter the month  of the arrival");
+        monAr=read.nextLine();
+        monAr.toLowerCase();
+        while(!DaysPerMonth.containsKey(monAr)){
+            System.out.println("Please inserta valid month");
+            monAr=read.nextLine();
+            monAr.toLowerCase();
+        }
+        return monAr;
+    }
+
+    public String readMonDep(){
+        Scanner read=new Scanner(System.in);
+        System.out.println("Please enter the month  of the departure");
+        monD=read.nextLine();
+        monD.toLowerCase();
+        while(!DaysPerMonth.containsKey(monD)){
+            System.out.println("Please inserta valid month");
+            monD=read.nextLine();
+            monD.toLowerCase();
+        }
+        return monD;
+    }
+
+    public int readDAteAr(){
+        Scanner read=new Scanner(System.in);
+        System.out.println("Please enter the date  of the arrival");
+        dateAr=read.nextInt();
+        while(dateAr>DaysPerMonth.get(monAr)){
+            System.out.println("Please insert a valid date between 1 and "+ DaysPerMonth.get(monAr));
+            dateAr=read.nextInt();
+        }
+        read.nextLine();
+        return dateAr;
+    }
+
+    public int readDAteD(){
+        Scanner read=new Scanner(System.in);
+        System.out.println("Please enter the date  of the departure");
+        dateD=read.nextInt();
+        while(dateD>DaysPerMonth.get(monD)){
+            System.out.println("Please insert a valid date between 1 and "+ DaysPerMonth.get(monD));
+            dateD=read.nextInt();
+        }
+        read.nextLine();
+        return dateD;
+    }
 
     /**
      * searching if the name of a specific hotel exist
-     * @param name the name of the hotel
+     * @param name the name of the hote
      * @return true if the name exist,else returns false
      */
     public boolean searchAccommodationByName(String name){
@@ -122,11 +221,11 @@ public class customer {
         for(provider i:duplicate){
             for(accommodation j:i.buildings){
                 if(name.equals(j.getName())){
-                    j.cal.preferableDaysOfStay();
-                    break;
+                    while(!j.cal.rentDays(readMonAr(),readDAteAr(),readMonDep(),readDAteD()));
                 }
             }
         }
+
     }
 
 

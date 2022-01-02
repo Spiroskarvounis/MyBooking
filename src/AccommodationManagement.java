@@ -35,6 +35,25 @@ public class AccommodationManagement {
         }
      }
 
+    public void showSpecificTypeOfAccommodation(String a){
+        for(provider i:providers){
+            for(accommodation j: i.buildings){
+                if(a.equals("hotel")){
+                     if(j instanceof hotel){
+                         System.out.println("The "+j.getName()+" is a hotel type of accommodation");
+                     }
+                }
+                else if(a.equals("airbnb")){
+                    if(j instanceof airbnb){
+                        System.out.println("The "+j.getName()+" is a airbnb type of accommodation");
+                    }
+                }
+            }
+        }
+
+
+
+    }
 
 
 

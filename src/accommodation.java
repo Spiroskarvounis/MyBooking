@@ -1,3 +1,6 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 import java.util.*;
 
 public class accommodation {
@@ -17,7 +20,22 @@ public class accommodation {
     private double SquareMetres;
     private int capacity;
     private String location;
-    Calendar cal ;
+    public Calendar cal ;
+    JFrame AccommodationFrame;
+    private JTextField WriteName;
+    protected JPanel accommodationPanel;
+    private JLabel FillName;
+    private JTextField WriteCapacity;
+    private JLabel FillCapacity;
+    private JTextField WritePrice;
+    private JTextField WriteSquareMetres;
+    private JLabel FillPrice;
+    private JLabel FillSquareMetres;
+    private JLabel FillLocation;
+    private JTextField WriteLocation;
+    private JButton SumbitButton;
+    private JTextField WriteCharacteristics;
+    private JLabel FillCharct;
     //HashSet <Image> img;
     /*
     JFrame frame = new JFrame();
@@ -37,9 +55,54 @@ public class accommodation {
     public accommodation(){
         characteristics=new HashSet<String>();
         cal=new Calendar();
-        //img=new HashSet<Image>();
+        CreateFrame();
+        SumbitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setName(WriteName.getText());
+                setLocation(WriteLocation.getText());
+                setPrice(Integer.parseInt(WritePrice.getText()));
+                setSquareMetres(Integer.parseInt(WriteSquareMetres.getText()));
+                setCapacity(Integer.parseInt(WriteCapacity.getText()));
+                String tmp = WriteCharacteristics.getText();
+                String[] tmp1 = tmp.split(",");
+                for (String i : tmp1) {
+                    addCharacteristics(i);
+                }
+                //JOptionPane.showMessageDialog(null, "Your sumbision is successfull!");
+                //JOptionPane.getRootFrame().dispose();
+                AccommodationFrame.dispose();
+                AddExtraFacility c = new AddExtraFacility();
+            }});
+
+
+
+/*
+        SumbitButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                setName(WriteName.getText());
+                setLocation(WriteLocation.getText());
+                setPrice(Integer.parseInt(WritePrice.getText()));
+                setSquareMetres(Integer.parseInt(WriteSquareMetres.getText()));
+                setCapacity(Integer.parseInt(WriteCapacity.getText()));
+                String tmp=WriteCharacteristics.getText();
+                String [] tmp1=tmp.split(",");
+                for (String i:tmp1){
+                    addCharacteristics(i);
+                }
+                JOptionPane.showMessageDialog(null,"Your sumbision is successfull!");
+                JOptionPane.getRootFrame().dispose();
+                AccommodationFrame.dispose();
+                AddExtraFacility c=new AddExtraFacility();
+            }
+        });
+        */
 
     }
+
+
 
 
     /**
@@ -106,6 +169,9 @@ public class accommodation {
         this.location = location;
     }
 
+
+
+
     /**
      * converts all the letters of the word to lowercase and then adds them to the HashSet characteristic
      * @param s the characteristic that will be added
@@ -114,48 +180,20 @@ public class accommodation {
         s=s.toLowerCase();
         characteristics.add(s);
     }
-
+    private void CreateFrame(){
+        AccommodationFrame=new JFrame();
+        AccommodationFrame.add(accommodationPanel);
+        AccommodationFrame.setBounds(250,250,100000,1000);
+//        AccommodationFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        AccommodationFrame.pack();
+        AccommodationFrame.setVisible(true);
+    }
     /**
      * creates an accommodation object @duplicate
      * then start to read with the usage of @tmp1 ,@tmp2,@tmp3 the information about the resort and stores them with the usage of setter
      * @return
      */
-    public accommodation fillTheInformation(){
-        accommodation duplicate1;
-        Scanner read=new Scanner(System.in);
-        String tmp3;
-        System.out.println("Enter the name of the facility.");
-        tmp3=read.nextLine();
-        setName(tmp3);
-        //read.nextLine();
-        int tmp1;
-        float tmp2;
-        System.out.println("Enter capacity of the facility.");
-        tmp1=read.nextInt();
-        setCapacity(tmp1);
-        System.out.println("Enter the price of each night.");
-        tmp1=read.nextInt();
-        setPrice(tmp1);
-        //System.out.println(a.getPrice());
-        System.out.println("Enter the square metres.");
-        tmp2= read.nextFloat();;
-        setSquareMetres(tmp2);
-        //System.out.println(a.getSquareMetres());
-        System.out.println("Enter the location.");
-        read.nextLine();
-        tmp3=read.nextLine();
-        setLocation(tmp3);
-        //System.out.println(a.getLocation());
-        System.out.println("Enter the characteristics.(double 'enter' to stop)");
-        tmp3=read.nextLine();
-        while(!(tmp3.equals(""))){
-            addCharacteristics(tmp3);
-            //System.out.println(tmp3);
-            tmp3=read.nextLine();
-        }
-        duplicate1=new accommodation(getName(),getPrice(),getSquareMetres(),getCapacity(),getLocation(),getCharacteristics());
-        return duplicate1;
-    }
+
 
     /**
      * prints all the information of each facility
@@ -179,6 +217,10 @@ public class accommodation {
 
     }
 
+
+    public static void main(String[] args){
+        accommodation a=new accommodation();
+    }
 
 
 

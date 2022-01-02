@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.*;
 
 
@@ -9,6 +10,7 @@ public class Interface {
     Scanner input = new Scanner(System.in);
     int age, type, choice;
     String in, gender, name, surname, username, password;
+    private JButton button1;
 
     /**
      *This function takes all the characteristics of a provider and his hotel/airbnb and creates him.
@@ -46,21 +48,22 @@ public class Interface {
 
         addUser(29,1,"male","nikos","pappas","nikpap","pap1992");
         HashSet<String> characteristics=new HashSet<>();
+        HashSet<String> em=new HashSet<>();
         characteristics.add("pool");
         characteristics.add("parking");
         characteristics.add("wifi");
         a.addProvider(createProvider("palace",30,600,1000,"saint louis",characteristics,"hotel","pappas"));
         addUser(43,1,"male","sakis","tanimanidis","saktan","sakis111");
-        characteristics.clear();
+       // characteristics.removeAll(characteristics);
         characteristics.add("wifi");
         characteristics.add("massage");
         characteristics.add("private chef");
         a.addProvider(createProvider("sun",70,1500,400,"bali",characteristics,"hotel","saktan"));
         addUser(35,1,"female","eleanna","kontou","helen","elekont");
-        characteristics.clear();
-        characteristics.add("big rooms");
-        characteristics.add("central heat");
-        characteristics.add("quiet");
+        //characteristics.removeAll(characteristics);
+       // characteristics.add("big rooms");
+        //characteristics.add("central heat");
+        //characteristics.add("quiet");
         a.addProvider(createProvider("wooden house",20,63,2,"kastoria",characteristics,"airbnb","elekont"));
 
         addUser(45,2,"male","john","karas","johnk","john123");
@@ -154,4 +157,8 @@ public class Interface {
          }
 
      }
+
+
+
+
 }
