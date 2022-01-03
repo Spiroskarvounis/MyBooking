@@ -69,7 +69,6 @@ public class accommodation  {
                 for (String i : tmp1) {
                     addCharacteristics(i);
                 }
-                printInformation();
                 JOptionPane.showMessageDialog(null, "Your sumbision is successfull!");
                 JOptionPane.getRootFrame().dispose();
                 AccommodationFrame.dispose();

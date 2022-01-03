@@ -42,12 +42,13 @@ public class provider {
         checkFac.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frameProv.dispose();
+                for(accommodation i:buildings){
+                    checkFacilities a=new checkFacilities(i);
+                }
             }
         });
     }
     public provider(int a){
-        buildings=new ArrayList<>();
 
     }
 

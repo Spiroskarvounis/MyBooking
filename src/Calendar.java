@@ -1,3 +1,7 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.*;
 
 public class Calendar {
@@ -5,6 +9,16 @@ public class Calendar {
     HashMap<String,Integer> numberOfMonth;
     HashMap<Integer,Boolean> AvailableDays;
     HashSet <String> Months;
+    JFrame calFrame;
+
+    private JPanel calPanel;
+    private JComboBox comboBox1;
+    private JComboBox comboBox2;
+    private JComboBox comboBox3;
+    private JComboBox comboBox4;
+    private JButton sumbitButton;
+    private JLabel failRerervation;
+
     public Calendar(){
         DaysPerMonth=new HashMap<>();
         AvailableDays =new HashMap<>();
@@ -62,8 +76,43 @@ public class Calendar {
         Months.add("october");
         Months.add("november");
         Months.add("december");
+        createFr();
+        failRerervation.setVisible(false);
 
 
+        sumbitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String tmp=(String) comboBox1.getSelectedItem(),tmp1=(String) comboBox3.getSelectedItem();  //tmp=arrival month,tmp1=departure month
+                tmp=tmp.toLowerCase();
+                tmp1=tmp1.toLowerCase();
+                int tmp2=Integer.parseInt((String) comboBox2.getSelectedItem()); // tmp2=arrival date
+                tmp1=tmp1.toLowerCase();
+                int tmp3=Integer.parseInt((String) comboBox4.getSelectedItem()); // tmp3=departure date
+                int count=0;
+                boolean state=rentDays(tmp,tmp2,tmp1,tmp3);
+                if(state){
+                    JOptionPane.showMessageDialog(null,"Successfull reservation!");
+                    JOptionPane.getRootFrame().dispose();
+                    calFrame.dispose();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"Unsuccessfull reservation.Please try again.");
+                    JOptionPane.getRootFrame().dispose();
+                    calFrame.dispose();
+                    Calendar c=new Calendar();
+                }
+
+
+
+
+
+
+
+
+
+            }
+        });
     }
 
     public HashMap<String, Integer> getDaysPerMonth() {
@@ -92,7 +141,6 @@ public class Calendar {
         departure=numberOfMonth.get(monthDeparture)*100+departure;
         Boolean returnType=true;
         if(arrival>departure){
-            System.out.println("The reservation can't be done.Please insert a valid date");
             returnType= false;
         }
         ArrayList <Integer> tmp=new ArrayList<>();
@@ -111,7 +159,7 @@ public class Calendar {
                 }
             }
         }
-        showRentDays(monthArrive,arrival%100,monthDeparture,departure%100,returnType);
+        //showRentDays(monthArrive,arrival%100,monthDeparture,departure%100,returnType);
         return returnType;
     }
 
@@ -149,5 +197,17 @@ public class Calendar {
         }
         rentDays(monAr,dateAr,monD,dateD);
     }
+    public void createFr(){
 
+        calFrame=new JFrame();
+        calFrame.add(calPanel);
+        calFrame.setBounds(250,250,100000,1000);
+//        AccommodationFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        calFrame.pack();
+        calFrame.setVisible(true);
+    }
+    public static void main(String[] args){
+        Calendar a= new Calendar();
+
+    }
 }
