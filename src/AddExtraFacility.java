@@ -3,7 +3,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AddExtraFacility {
+public class AddExtraFacility extends provider{
+    accommodation ac;
     JFrame fr;
     protected JPanel jpan;
     private JButton yes;
@@ -11,11 +12,13 @@ public class AddExtraFacility {
     private JLabel question;
 
     public AddExtraFacility() {
+        super(1);
         yes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 fr.dispose();
                 accommodation a=new accommodation();
+                buildings.add(a);
             }
         });
         createFr();
@@ -40,4 +43,22 @@ public class AddExtraFacility {
 
 
 
+
+    /*
+    public provider getProv(){
+        return prov;
+    }
+    public void setProv(provider a){
+        prov=a;
+    }
+
+     */
+
+    public accommodation getAc() {
+        return ac;
+    }
+
+    public void setAc(accommodation ac) {
+        this.ac = ac;
+    }
 }

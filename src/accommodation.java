@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-public class accommodation {
+public class accommodation  {
     /**
      * @param name the name of the facility(hotel,airbnb or anything else)
      * @param price the price of each night
@@ -69,10 +69,13 @@ public class accommodation {
                 for (String i : tmp1) {
                     addCharacteristics(i);
                 }
-                //JOptionPane.showMessageDialog(null, "Your sumbision is successfull!");
-                //JOptionPane.getRootFrame().dispose();
+                printInformation();
+                JOptionPane.showMessageDialog(null, "Your sumbision is successfull!");
+                JOptionPane.getRootFrame().dispose();
                 AccommodationFrame.dispose();
-                AddExtraFacility c = new AddExtraFacility();
+
+
+                AddExtraFacility a=new AddExtraFacility();
             }});
 
 
@@ -219,7 +222,7 @@ public class accommodation {
 
 
     public static void main(String[] args){
-        accommodation a=new accommodation();
+        //accommodation a=new accommodation();
     }
 
 

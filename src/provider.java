@@ -10,11 +10,16 @@ public class provider {
      * @typeOfAccommodation hotel,airbnb or anything else
      * @builings an array list that contains all the building of each provider
      */
-
+    AddExtraFacility extra;
     private String typeOfAccommodation;
     private String username;
     public  ArrayList <accommodation> buildings;
     private JTextField textField1;
+    private JLabel selectOption;
+    private JButton addFac;
+    private JButton checkFac;
+    private JPanel providerPanel;
+    JFrame frameProv;
 
     /**
      * default consructor
@@ -23,36 +28,27 @@ public class provider {
      * the possible objects are hotel,airbnb or accommodation(hotel and airbnb inherit for accommodation
      */
     public provider(){
-
-        Scanner read=new Scanner(System.in);
         buildings=new ArrayList<>();
-        String continueAdding="yes";
-        String type;
-        while( !continueAdding.equals("no")){
-            type=readTypeOfAccommodation();
-            accommodation a;
-            if(type.equals("hotel")){
-                a =new hotel();
-            }
-            else  if(type.equals("airbnb")){
-               a=new airbnb();
-            }
-            else {
-                 a=new accommodation();
 
-            }
-            buildings.add(a);
-            System.out.println("Do you have more to offer? If so,type yes ,else type no.");
-            continueAdding=read.nextLine();
-        }
-
-
-        textField1.addActionListener(new ActionListener() {
+        addFac.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                accommodation a=new accommodation();
+                buildings.add(a);
+                frameProv.dispose();
             }
         });
+        CreateFrame();
+        checkFac.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frameProv.dispose();
+            }
+        });
+    }
+    public provider(int a){
+        buildings=new ArrayList<>();
+
     }
 
     /**
@@ -94,19 +90,16 @@ public class provider {
      * reading the type of accommodation from the user
      * @return the type of the accommodation
      */
-    public String readTypeOfAccommodation(){
-        Scanner read=new Scanner(System.in);
-        System.out.println("We provide hotel and airbnb accommodation. Type 'hotel' or 'airbnb'");
-        String type=read.nextLine();
-        while (!type.equals("hotel") && !type.equals("airbnb")){
-            System.out.println("Wrong choice! Type 'hotel' or 'airbnb'");
-            type=read.nextLine();
-        }
-        this.typeOfAccommodation=type;
-        return type;
 
+
+    private void CreateFrame(){
+       frameProv=new JFrame();
+       frameProv.add(providerPanel);
+       frameProv.setBounds(250,250,100000,1000);
+//        AccommodationFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+       frameProv.pack();
+       frameProv.setVisible(true);
     }
-
 
     /**
      * reading the type of rental from the user
@@ -131,5 +124,8 @@ public class provider {
             i.printInformation();
         }
     }
+    public static void main(String[] args){
+        provider a=new provider();
 
+    }
 }
