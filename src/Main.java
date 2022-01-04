@@ -34,29 +34,30 @@ public class Main {
             if (choice==1) {
                 System.out.println("Type the name you want: ");
                 name = input.nextLine();
-                if (cust.searchAccommodationByName(name))
+               //if (cust.searchAccommodationByName(name))
                     cust.resevation(name);
             } else if(choice==2){
                 System.out.println("Give the price range you want: ");
                 start = input.nextInt();
                 finish = input.nextInt();
                 input.nextLine();
-                if (cust.searchAccommodationByPriceRange(start,finish)) {
+                //if (cust.searchAccommodationByPriceRange(start,finish)) {
                     System.out.println("Type the name you want: ");
                     name = input.nextLine();
-                    if (cust.searchAccommodationByName(name))
+                    //if (cust.searchAccommodationByName(name))
                         cust.resevation(name);                }
-            } else {
+            else {
                 System.out.println("Type the location of the accommodation: ");
                 location = input.nextLine();
-                if (cust.searchAccommodationLocation(location)) {
+                //if (cust.searchAccommodationLocation(location)) {
                     System.out.println("Type the name you want: ");
                     name = input.nextLine();
-                    if (cust.searchAccommodationByName(name))
+                    //if (cust.searchAccommodationByName(name))
                         cust.resevation(name);
                 }
             }
         }
+        /*
         else {
             System.out.println("Do you want to see the list of users? Type 1(yes) or 0(no).");
             choice= input.nextInt();
@@ -85,6 +86,8 @@ public class Main {
         }
 
     }
+
+         */
 
 }
 

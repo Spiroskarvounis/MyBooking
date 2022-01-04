@@ -20,11 +20,11 @@ public class Interface {
         ArrayList<accommodation> resorts=new ArrayList<>();
         hotel hotel;
         airbnb airbnb;
-        hotel f=new hotel();
+       // hotel f=new hotel();
         accommodation d=new accommodation(name,price,squareMetres,capacity,location,characteristics);
         if(type.equals("hotel")){
-            hotel=new hotel (50,d);
-            resorts.add(hotel);
+           hotel=new hotel (50,d);
+           resorts.add(hotel);
         }
         else if(type.equals("airbnb")){
             airbnb=new airbnb(d);

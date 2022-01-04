@@ -46,4 +46,13 @@ public class hotel extends accommodation  {
         Scanner read=new Scanner(System.in);
         availableRooms =read.nextInt();
     }
+
+
+    public static void main(String[] args){
+        Interface a=new Interface();
+        hotel b=new hotel();
+        //customer b=new customer(a.a.getProviders());
+        //customer c=new customer(a.a.getProviders());
+
+    }
 }

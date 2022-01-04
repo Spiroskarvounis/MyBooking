@@ -19,6 +19,8 @@ public class provider {
     private JButton addFac;
     private JButton checkFac;
     private JPanel providerPanel;
+    private JComboBox comboBox1;
+    private JButton logOutButton;
     JFrame frameProv;
 
     /**
@@ -28,23 +30,29 @@ public class provider {
      * the possible objects are hotel,airbnb or accommodation(hotel and airbnb inherit for accommodation
      */
     public provider(){
-        buildings=new ArrayList<>();
-
         addFac.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(buildings==null){
+                    buildings=new ArrayList<>();
+                }
                 accommodation a=new accommodation();
                 buildings.add(a);
-                frameProv.dispose();
+
             }
         });
         CreateFrame();
         checkFac.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for(accommodation i:buildings){
-                    checkFacilities a=new checkFacilities(i);
-                }
+                    checkFacilities a=new checkFacilities(buildings);
+
+            }
+        });
+        logOutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frameProv.dispose();
             }
         });
     }
@@ -96,6 +104,7 @@ public class provider {
     private void CreateFrame(){
        frameProv=new JFrame();
        frameProv.add(providerPanel);
+       frameProv.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
        frameProv.setBounds(250,250,100000,1000);
 //        AccommodationFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
        frameProv.pack();
@@ -126,7 +135,9 @@ public class provider {
         }
     }
     public static void main(String[] args){
+        Interface b=new Interface();
         provider a=new provider();
-
+        b.a.addProvider(a);
+        customer c =new customer(b.a.getProviders());
     }
 }

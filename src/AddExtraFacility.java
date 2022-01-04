@@ -12,7 +12,7 @@ public class AddExtraFacility extends provider{
     private JLabel question;
 
     public AddExtraFacility() {
-        super(1);
+
         yes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -33,6 +33,7 @@ public class AddExtraFacility extends provider{
         fr=new JFrame();
         fr.add(jpan);
         fr.setBounds(250,250,100000,1000);
+        fr.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 //        AccommodationFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         fr.pack();
         fr.setVisible(true);

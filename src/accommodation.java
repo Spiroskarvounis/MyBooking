@@ -54,7 +54,6 @@ public class accommodation  {
      */
     public accommodation(){
         characteristics=new HashSet<String>();
-        cal=new Calendar();
         CreateFrame();
         SumbitButton.addActionListener(new ActionListener() {
             @Override
@@ -74,7 +73,6 @@ public class accommodation  {
                 AccommodationFrame.dispose();
 
 
-                AddExtraFacility a=new AddExtraFacility();
             }});
 
 
@@ -118,7 +116,7 @@ public class accommodation  {
         SquareMetres = squareMetres;
         this.capacity = capacity;
         this.location = location;
-        cal=new Calendar();
+        //cal=new Calendar();
         //img=new HashSet<Image>();
     }
 
@@ -185,6 +183,7 @@ public class accommodation  {
     private void CreateFrame(){
         AccommodationFrame=new JFrame();
         AccommodationFrame.add(accommodationPanel);
+        AccommodationFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         AccommodationFrame.setBounds(250,250,100000,1000);
 //        AccommodationFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         AccommodationFrame.pack();
@@ -221,7 +220,7 @@ public class accommodation  {
 
 
     public static void main(String[] args){
-        //accommodation a=new accommodation();
+        accommodation a=new accommodation();
     }
 
 

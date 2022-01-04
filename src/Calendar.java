@@ -10,6 +10,43 @@ public class Calendar {
     HashMap<Integer,Boolean> AvailableDays;
     HashSet <String> Months;
     JFrame calFrame;
+    private String arrMon;
+    private String depMon;
+    private int arrDate;
+    private int depDate;
+
+    public String getArrMon() {
+        return arrMon;
+    }
+
+    public void setArrMon(String arrMon) {
+        this.arrMon = arrMon;
+    }
+
+    public String getDepMon() {
+        return depMon;
+    }
+
+    public void setDepMon(String depMon) {
+        this.depMon = depMon;
+    }
+
+    public int getArrDate() {
+        return arrDate;
+    }
+
+    public void setArrDate(int arrDate) {
+        this.arrDate = arrDate;
+    }
+
+    public int getDepDate() {
+        return depDate;
+    }
+
+    public void setDepDate(int depDate) {
+        this.depDate = depDate;
+    }
+
 
     private JPanel calPanel;
     private JComboBox comboBox1;
@@ -83,14 +120,15 @@ public class Calendar {
         sumbitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String tmp=(String) comboBox1.getSelectedItem(),tmp1=(String) comboBox3.getSelectedItem();  //tmp=arrival month,tmp1=departure month
-                tmp=tmp.toLowerCase();
-                tmp1=tmp1.toLowerCase();
-                int tmp2=Integer.parseInt((String) comboBox2.getSelectedItem()); // tmp2=arrival date
-                tmp1=tmp1.toLowerCase();
-                int tmp3=Integer.parseInt((String) comboBox4.getSelectedItem()); // tmp3=departure date
+                arrMon=(String) comboBox1.getSelectedItem();
+                depMon=(String) comboBox3.getSelectedItem();  //tmp=arrival month,tmp1=departure month
+                arrMon=arrMon.toLowerCase();
+                depMon=depMon.toLowerCase();
+                arrDate =Integer.parseInt((String) comboBox2.getSelectedItem()); // tmp2=arrival date
+
+                depDate=Integer.parseInt((String) comboBox4.getSelectedItem()); // tmp3=departure date
                 int count=0;
-                boolean state=rentDays(tmp,tmp2,tmp1,tmp3);
+                boolean state=rentDays(arrMon,arrDate,depMon,depDate);
                 if(state){
                     JOptionPane.showMessageDialog(null,"Successfull reservation!");
                     JOptionPane.getRootFrame().dispose();
@@ -102,12 +140,6 @@ public class Calendar {
                     calFrame.dispose();
                     Calendar c=new Calendar();
                 }
-
-
-
-
-
-
 
 
 
@@ -202,6 +234,7 @@ public class Calendar {
         calFrame=new JFrame();
         calFrame.add(calPanel);
         calFrame.setBounds(250,250,100000,1000);
+        calFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 //        AccommodationFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         calFrame.pack();
         calFrame.setVisible(true);

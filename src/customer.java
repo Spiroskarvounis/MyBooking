@@ -1,3 +1,7 @@
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BandCombineOp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -8,7 +12,12 @@ public class customer {
     private int dateAr,dateD;
     public ArrayList<provider> duplicate;
     HashMap<String,Integer> DaysPerMonth;
-
+    JFrame custFrame;
+    private JButton findButton;
+    private JLabel searching;
+    private JButton informationButton;
+    private JPanel customerPanel;
+    private JButton reserveButton;
 
     public customer(ArrayList<provider> original){
         DaysPerMonth=new HashMap<>();
@@ -25,8 +34,30 @@ public class customer {
         DaysPerMonth.put("november",30);
         DaysPerMonth.put("december",31);
         duplicate=original;
+
+
+        findButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                searchByType a=new searchByType(duplicate);
+            }
+        });
+        CreateFrame();
+        reserveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                reservation a=new reservation(duplicate);
+                custFrame.dispose();
+            }
+        });
     }
 
+    public customer(ArrayList<provider> original,int a){
+        duplicate=original;
+
+
+
+    }
 
     public ArrayList<provider> getDuplicate() {
         return duplicate;
@@ -68,95 +99,82 @@ public class customer {
         this.duplicate = duplicate;
     }
 
-    public String readMonAr(){
-        Scanner read=new Scanner(System.in);
-        System.out.println("Please enter the month  of the arrival");
-        monAr=read.nextLine();
-        monAr.toLowerCase();
-        while(!DaysPerMonth.containsKey(monAr)){
-            System.out.println("Please inserta valid month");
-            monAr=read.nextLine();
-            monAr.toLowerCase();
-        }
-        return monAr;
-    }
-
-    public String readMonDep(){
-        Scanner read=new Scanner(System.in);
-        System.out.println("Please enter the month  of the departure");
-        monD=read.nextLine();
-        monD.toLowerCase();
-        while(!DaysPerMonth.containsKey(monD)){
-            System.out.println("Please inserta valid month");
-            monD=read.nextLine();
-            monD.toLowerCase();
-        }
-        return monD;
-    }
-
-    public int readDAteAr(){
-        Scanner read=new Scanner(System.in);
-        System.out.println("Please enter the date  of the arrival");
-        dateAr=read.nextInt();
-        while(dateAr>DaysPerMonth.get(monAr)){
-            System.out.println("Please insert a valid date between 1 and "+ DaysPerMonth.get(monAr));
-            dateAr=read.nextInt();
-        }
-        read.nextLine();
-        return dateAr;
-    }
-
-    public int readDAteD(){
-        Scanner read=new Scanner(System.in);
-        System.out.println("Please enter the date  of the departure");
-        dateD=read.nextInt();
-        while(dateD>DaysPerMonth.get(monD)){
-            System.out.println("Please insert a valid date between 1 and "+ DaysPerMonth.get(monD));
-            dateD=read.nextInt();
-        }
-        read.nextLine();
-        return dateD;
-    }
-
     /**
      * searching if the name of a specific hotel exist
      * @param name the name of the hote
      * @return true if the name exist,else returns false
      */
-    public boolean searchAccommodationByName(String name){
+    public accommodation searchAccommodationByName(String name){
         for(provider i:duplicate){
             for(accommodation j:i.buildings){
-
                 if(name.equals(j.getName())){
-
-                    return true;
+                    return j;
                 }
             }
         }
-        return false;
+       return null;
     }
 
     /**
      * searching if there is a hotel between two price ranges
-     * @param minimum the minimun price(could be 0)
-     * @param maximum the maximum
+
+     * @param min the maximum
      * @return true if the range of the price exists,else returns false
      */
 
-    public boolean searchAccommodationByPriceRange(int minimum,int maximum){
-        boolean returnType=false;
+    public ArrayList <String>  searchAccommodationSquareMetres(int min){
+        ArrayList a=new ArrayList();
         for(provider i:duplicate){
             for(accommodation j:i.buildings){
-                if(j.getPrice()>minimum && j.getPrice()<maximum){
-                    System.out.println("The resort '"+ j.getName() +"' is between your price ranges.You can now search the resort to see the further information!");
-                    returnType=true;
+                if(j.getSquareMetres()>=min && (!a.contains(j.getName()))){
+                    a.add(j.getName());
                 }
             }
         }
-        return returnType;
+        if(a.isEmpty()){
+            return null;
+        }
+        else{
+            return a;
+        }
     }
 
+    public ArrayList <String> searchAccommodationByPriceRange(int maximum){
+        ArrayList a=new ArrayList();
 
+        for(provider i:duplicate){
+            for(accommodation j:i.buildings){
+                if( j.getPrice()<=maximum && !a.contains(j.getName())){
+                    a.add(j.getName());
+                }
+            }
+        }
+        if(a.isEmpty()){
+            return null;
+        }
+        else{
+            return a;
+        }
+    }
+
+    public ArrayList<String> searchAccommodationByCapacity(int min){
+        ArrayList a=new ArrayList();
+
+        for(provider i:duplicate){
+            for(accommodation j:i.buildings){
+                if( j.getCapacity()>=min && !a.contains(j.getName())){
+                    a.add(j.getName());
+                }
+            }
+        }
+        if(a.isEmpty()){
+            return null;
+        }
+        else{
+            return a;
+        }
+
+    }
     /**
      *  searching through each building of each provider to see whether the specific characteristics exist
      * @param charact a HashSet that contains all the characteristics that the user needs(could be also 1)
@@ -200,17 +218,22 @@ public class customer {
      * @param location the desirable location
      * @return returns true if there is at least on hotel exists in that location,else returns false
      */
-    public boolean searchAccommodationLocation(String location){
-        boolean returnType=false;
+    public ArrayList<String> searchAccommodationLocation(String location){
+        ArrayList a=new ArrayList();
+
         for(provider i:duplicate){
             for(accommodation j:i.buildings){
-                if(j.getLocation().equals(location)){
-                    System.out.println("The '"+j.getName()+"' is at this area.You can now search the name of the resort.");
-                    returnType=true;
+                if(j.getLocation().equals(location) && !a.contains(j.getName())){
+                    a.add(j.getName());
                 }
             }
         }
-        return returnType;
+        if(a.isEmpty()){
+            return null;
+        }
+        else{
+            return a;
+        }
     }
 
     /**
@@ -221,14 +244,35 @@ public class customer {
         for(provider i:duplicate){
             for(accommodation j:i.buildings){
                 if(name.equals(j.getName())){
-                    while(!j.cal.rentDays(readMonAr(),readDAteAr(),readMonDep(),readDAteD()));
+                    if(j.cal==null){
+                         j.cal=new Calendar();
+                    }
+                       monAr=j.cal.getArrMon();
+                       monD=j.cal.getDepMon();
+                       dateAr=j.cal.getArrDate();
+                       dateD=j.cal.getDepDate();
+
                 }
             }
         }
 
+
+    }
+    private void CreateFrame(){
+        custFrame=new JFrame();
+        custFrame.add(customerPanel);
+        custFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        custFrame.setBounds(250,250,100000,1000);
+//        AccommodationFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        custFrame.pack();
+        custFrame.setVisible(true);
     }
 
+    public static void main(String[] args){
+        Interface a=new Interface();
+        customer b=new customer(a.a.getProviders());
 
+    }
 
 
 }
