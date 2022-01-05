@@ -18,7 +18,7 @@ public class Main {
         String name, charact, location;
         HashSet<String> characteristics = new HashSet();
         Interface run=new Interface();
-        run.menu();
+
 
         //customer cust=new customer(run.a.getProviders());
 

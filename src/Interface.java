@@ -93,6 +93,7 @@ public class Interface {
         logInButtton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                boolean found=false;
                 String username=usernanameField.getText();
                 String pass=String.valueOf(passwordField1.getPassword());
                 String type=(String)comboBox1.getSelectedItem();
@@ -107,6 +108,7 @@ public class Interface {
                     typeOfUser=2;
                 for(user i:users){
                     if(i.getUsername().contains(username) && i.getPassword().contains(pass) && i.getType()==typeOfUser){
+                        found=true;
                         JOptionPane.showMessageDialog(null,"Successful log in !!");
                         JOptionPane.getRootFrame().dispose();
                         if(typeOfUser==1){
@@ -130,6 +132,9 @@ public class Interface {
 
                         }
                     }
+                }
+                if(!found){
+                    JOptionPane.showMessageDialog(null,"Fail sing in!Please try again." );
                 }
 
             }
@@ -175,68 +180,7 @@ public class Interface {
      * This function is about the login menu. We ask the user if he/she wants to log in or register and then we ask for the further information we need
      */
 
-     public void menu() {
 
-         System.out.println("Welcome! Do you want to login or sign up? Press 1 for login or 0 for sign up: ");
-         choice = input.nextInt();
-         while (choice != 0 && choice != 1) {
-             System.out.println("Wrong choice! Press 1 for login or 0 for sign up: ");
-             choice = input.nextInt();
-         }
-         if (choice == 0) {
-             input.nextLine();
-             System.out.println("Set your username: ");
-             username = input.nextLine();
-             System.out.println("Set your password: ");
-             password = input.nextLine();
-             System.out.println("Confirm your password: ");
-             in = input.nextLine();
-             while (!password.equals(in)) {
-                 System.out.println("Wrong password! Try again: ");
-                 in = input.nextLine();
-             }
-             System.out.println("Your name: ");
-             name = input.nextLine();
-             System.out.println("Your surname: ");
-             surname = input.nextLine();
-             System.out.println("Your gender: ");
-             gender = input.nextLine();
-             System.out.println("Your age: ");
-             age = input.nextInt();
-             System.out.println("Your type (1 for providers, 2 for customers, 3 for admins): ");
-             type = input.nextInt();
-             input.nextLine();
-
-            //addUser(age, type, gender, name, surname, username, password);
-             System.out.println("You have registered successfully!");
-         } else {
-
-             input.nextLine();
-             System.out.println("Insert your username: ");
-             username = input.nextLine();
-
-             while (!login_info.containsKey(username)) {
-                 System.out.println("This username does not exist! Try again: ");
-                 username = input.nextLine();
-             }
-
-             System.out.println("Insert your password: ");
-             password = input.nextLine();
-
-             while (!login_info.get(username).equals(password)) {
-                 System.out.println("The password is wrong! Try again: ");
-                 password = input.nextLine();
-             }
-             System.out.println("Successful login " + username);
-
-         }
-
-         for (user user : users) {
-             if (username.equals(user.getUsername()))
-                 type = user.getType();
-         }
-
-     }
 
     private void CreateFrame(){
         interfaceFrame=new JFrame("Enter to our world!");
