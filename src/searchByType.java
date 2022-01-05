@@ -93,8 +93,9 @@ public class searchByType extends customer{
                     }
                 }
             }
+
         });
-        CreateFrame();
+        CreateSearch();
         comboBox1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -104,13 +105,13 @@ public class searchByType extends customer{
             }
         });
     }
-    private void CreateFrame(){
-        typeLabel.setText("Now search accommodation by name");
-        searchFrame=new JFrame();
+    private void CreateSearch(){
+        typeLabel.setText("Now search accommodation by name!");
+        searchFrame=new JFrame("Search facilities.");
         searchFrame.add(searchPanel);
         searchFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         searchFrame.setBounds(250,250,10000000,10000000);
-        searchFrame.setPreferredSize(new Dimension(600,300));
+        searchFrame.setPreferredSize(new Dimension(800,300));
         //searchFrame.setSize(1000,1000);
 //        AccommodationFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         searchFrame.pack();

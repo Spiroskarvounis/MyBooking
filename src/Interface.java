@@ -1,16 +1,29 @@
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.*;
 
 
 public class Interface {
-    AccommodationManagement a=new AccommodationManagement();
-    ArrayList<user> users = new ArrayList<>();
+    AccommodationManagement a;
+    ArrayList<user> users ;
     HashMap<String,String> login_info = new HashMap<>();
+    ArrayList <customer> customers ;
+
 
     Scanner input = new Scanner(System.in);
-    int age, type, choice;
+    int age, type, choice,id=0;
     String in, gender, name, surname, username, password;
-    private JButton button1;
+    private JButton logInButtton;
+    private JTextField usernanameField;
+    private JPasswordField passwordField1;
+    private JButton createAccButton;
+    private JLabel welcomeLabel;
+    private JLabel fillLabel;
+    private JLabel newcomerLabel;
+    private JPanel interfacePanel;
+    private JComboBox comboBox1;
+    JFrame interfaceFrame;
 
     /**
      *This function takes all the characteristics of a provider and his hotel/airbnb and creates him.
@@ -30,7 +43,8 @@ public class Interface {
             airbnb=new airbnb(d);
             resorts.add(airbnb);
         }
-        provider prov=new provider(username,type,resorts);
+        provider prov=new provider(username,type,resorts,id);
+        id++;
         return prov;
     }
 
@@ -45,30 +59,96 @@ public class Interface {
      *
      */
     public Interface(){
-
-        addUser(29,1,"male","nikos","pappas","nikpap","pap1992");
+        a=new AccommodationManagement();
+        users=new ArrayList<>();
+        customers = new ArrayList<>();
+        addUser(29,1,"male","nikos","pappas","nikpap","pap1992",id);
         HashSet<String> characteristics=new HashSet<>();
         HashSet<String> em=new HashSet<>();
         characteristics.add("pool");
         characteristics.add("parking");
         characteristics.add("wifi");
         a.addProvider(createProvider("palace",30,600,1000,"saint louis",characteristics,"hotel","pappas"));
-        addUser(43,1,"male","sakis","tanimanidis","saktan","sakis111");
+        addUser(43,1,"male","sakis","tanimanidis","saktan","sakis111",id);
        // characteristics.removeAll(characteristics);
         characteristics.add("wifi");
         characteristics.add("massage");
         characteristics.add("private chef");
         a.addProvider(createProvider("sun",70,1500,400,"bali",characteristics,"hotel","saktan"));
-        addUser(35,1,"female","eleanna","kontou","helen","elekont");
+        addUser(35,1,"female","eleanna","kontou","helen","elekont",id);
+
         //characteristics.removeAll(characteristics);
        // characteristics.add("big rooms");
         //characteristics.add("central heat");
         //characteristics.add("quiet");
         a.addProvider(createProvider("wooden house",20,63,2,"kastoria",characteristics,"airbnb","elekont"));
+        id++;
+        addUser(45,2,"male","john","karas","johnk","john123",id);
+        customer cust=new customer(a.getProviders(),3,id);
+        customers.add(cust);
+        id++;
+        addUser(37,3,"female","maria","theodorou","mtheo","123maria",id);
+        id++;
+        CreateFrame();
+        logInButtton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String username=usernanameField.getText();
+                String pass=String.valueOf(passwordField1.getPassword());
+                String type=(String)comboBox1.getSelectedItem();
+                int typeOfUser;
+                if(type.equals("admin")){
+                    typeOfUser=3;
+                }
+                else if(type.equals("provider")){
+                    typeOfUser=1;
+                }
+                else
+                    typeOfUser=2;
+                for(user i:users){
+                    if(i.getUsername().contains(username) && i.getPassword().contains(pass) && i.getType()==typeOfUser){
+                        JOptionPane.showMessageDialog(null,"Successful log in !!");
+                        JOptionPane.getRootFrame().dispose();
+                        if(typeOfUser==1){
+                            for(provider k:a.getProviders()){
+                                if(i.getId()==k.getId()){
+                                    k.CreateFrame();
+                                    interfaceFrame.dispose();
+                                }
+                            }
+                        }
+                        else if(typeOfUser==2){
+                            for(customer k:customers){
+                                if(i.getId()==k.getId()){
+                                    k.CreateFrame();
+                                    interfaceFrame.dispose();
+                                }
+                            }
 
-        addUser(45,2,"male","john","karas","johnk","john123");
-        addUser(37,3,"female","maria","theodorou","mtheo","123maria");
+                        }
+                        else {
 
+                        }
+                    }
+                }
+
+            }
+        });
+        createAccButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                interfaceFrame.dispose();
+                user tmp=new user(id,a);
+                if(tmp.getType()==1){
+                    a.addProvider(tmp.getProv());
+                }
+                else if(tmp.getType()==2){
+                    customers.add(tmp.getCustomer());
+                }
+                users.add(tmp);
+                id++;
+            }
+        });
     }
 
     /**
@@ -84,9 +164,9 @@ public class Interface {
      * @param password password of the user
      */
 
-    public void addUser(int age, int type, String gender, String name, String surname, String username, String password){
+    public void addUser(int age, int type, String gender, String name, String surname, String username, String password,int id){
 
-        user newUser = new user(name, surname, username, password, gender, type, age);
+        user newUser = new user(name, surname, username, password, gender, type, age,id);
         users.add(newUser);
         login_info.put(newUser.getUsername(), newUser.getPassword());
     }
@@ -127,7 +207,7 @@ public class Interface {
              type = input.nextInt();
              input.nextLine();
 
-             addUser(age, type, gender, name, surname, username, password);
+            //addUser(age, type, gender, name, surname, username, password);
              System.out.println("You have registered successfully!");
          } else {
 
@@ -158,6 +238,18 @@ public class Interface {
 
      }
 
+    private void CreateFrame(){
+        interfaceFrame=new JFrame("Enter to our world!");
+        interfaceFrame.add(interfacePanel);
+        interfaceFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        interfaceFrame.setBounds(250,250,100000,1000);
+//        AccommodationFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        interfaceFrame.pack();
+        interfaceFrame.setVisible(true);
+    }
+    public static void main(String[] args){
+         Interface a=new Interface();
+    }
 
 
 

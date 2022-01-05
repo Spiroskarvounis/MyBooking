@@ -22,6 +22,7 @@ public class provider {
     private JComboBox comboBox1;
     private JButton logOutButton;
     JFrame frameProv;
+    private int id;
 
     /**
      * default consructor
@@ -29,7 +30,8 @@ public class provider {
      *inserts everything in the array list buildings
      * the possible objects are hotel,airbnb or accommodation(hotel and airbnb inherit for accommodation
      */
-    public provider(){
+    public provider(String username,int id){
+        this.id=id;
         addFac.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -41,7 +43,7 @@ public class provider {
 
             }
         });
-        CreateFrame();
+        //CreateFrame();
         checkFac.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -56,7 +58,7 @@ public class provider {
             }
         });
     }
-    public provider(int a){
+    public provider(){
 
     }
 
@@ -64,11 +66,47 @@ public class provider {
      * a constructor that initializes the parameters
      */
 
-    public provider(String username, String typeOfAccommodation,ArrayList<accommodation> accommodations) {
+    public provider(String username,String typeOfAccommodation,ArrayList<accommodation> accommodations,int id) {
         this.typeOfAccommodation = typeOfAccommodation;
         this.username=username;
         buildings=accommodations;
+        this.id=id;
 
+
+        addFac.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(buildings==null){
+                    buildings=new ArrayList<>();
+                }
+                accommodation a=new accommodation();
+                buildings.add(a);
+
+            }
+        });
+
+        checkFac.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                checkFacilities a=new checkFacilities(buildings);
+
+            }
+        });
+        logOutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frameProv.dispose();
+            }
+        });
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -101,8 +139,8 @@ public class provider {
      */
 
 
-    private void CreateFrame(){
-       frameProv=new JFrame();
+    public void CreateFrame(){
+       frameProv=new JFrame("Choose your actions!");
        frameProv.add(providerPanel);
        frameProv.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
        frameProv.setBounds(250,250,100000,1000);
@@ -134,10 +172,5 @@ public class provider {
             i.printInformation();
         }
     }
-    public static void main(String[] args){
-        Interface b=new Interface();
-        provider a=new provider();
-        b.a.addProvider(a);
-        customer c =new customer(b.a.getProviders());
-    }
+
 }

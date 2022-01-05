@@ -231,7 +231,7 @@ public class Calendar {
     }
     public void createFr(){
 
-        calFrame=new JFrame();
+        calFrame=new JFrame("Choose your dates.");
         calFrame.add(calPanel);
         calFrame.setBounds(250,250,100000,1000);
         calFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

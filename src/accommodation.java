@@ -181,7 +181,7 @@ public class accommodation  {
         characteristics.add(s);
     }
     private void CreateFrame(){
-        AccommodationFrame=new JFrame();
+        AccommodationFrame=new JFrame("Enter facility,");
         AccommodationFrame.add(accommodationPanel);
         AccommodationFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         AccommodationFrame.setBounds(250,250,100000,1000);

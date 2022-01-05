@@ -1,8 +1,78 @@
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Arrays;
+
 public class user{
 
 
-    private int type, age; /* type: 1 for providers, 2 for customers, 3 for admins*/
+    private int type, age,id; /* type: 1 for providers, 2 for customers, 3 for admins*/
     private String name, surname, username, password, gender;
+    private JTextField nameField;
+    private JTextField ageField;
+    private JTextField usernameField;
+    private JTextField surnameField;
+    private JComboBox comboBox1;
+    private JComboBox comboBox2;
+    private JPasswordField passwordField1;
+    private JPasswordField passwordConfirmField2;
+    private JButton singupButton;
+    private JPanel userPanel;
+    JFrame userFrame;
+    provider c;
+    customer d;
+
+
+    public user (int id,AccommodationManagement acc){
+        this.id=id;
+        singupButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(Arrays.equals(passwordField1.getPassword(),passwordConfirmField2.getPassword())){
+                    name=nameField.getText();
+                    surname=surnameField.getText();
+                    age=Integer.parseInt(ageField.getText());
+                    String tmp=(String) comboBox2.getSelectedItem();
+                    if(tmp.equals("Provider")){
+                        type=1;
+                    }
+                    else if(tmp.equals("Customer")){
+                        type=2;
+                    }
+                    else {
+                        type=3;
+                    }
+                    gender=(String)  comboBox1.getSelectedItem();
+                    surname=surnameField.getText();
+                    password=String.valueOf(passwordField1.getPassword());
+                    JOptionPane.showMessageDialog(null,"Successful registration!!!");
+                    JOptionPane.getRootFrame().dispose();
+                    userFrame.dispose();
+
+
+                    if(getType()==1){
+                         c= new provider(getUsername(),id);
+                        JOptionPane.showMessageDialog(null,"You are now logged in as a provider.Press okey to continue.");
+                        JOptionPane.getRootFrame().dispose();
+                        c.CreateFrame();
+                    }
+                    else  if(getType()==2){
+                        d=new customer(acc.getProviders(),id);
+                        JOptionPane.showMessageDialog(null,"You are now logged in as a customer.Press okey to continue.");
+                        JOptionPane.getRootFrame().dispose();
+                        d.CreateFrame();
+                    }
+
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"Password confirmation wrong.Please enter again the password.");
+                    JOptionPane.getRootFrame().dispose();
+                }
+            }
+
+        });
+        CreateFrameUser();
+    }
 
     /**
      *
@@ -16,7 +86,9 @@ public class user{
      * @param password password of the user
      *
      */
-    public user(String name,String surname,String username,String password,String gender,int type,int age){
+
+    public user(String name,String surname,String username,String password,String gender,int type,int age,int id){
+        this.id=id;
         this.age = age;
         this.type = type;
         this.name = name;
@@ -24,8 +96,15 @@ public class user{
         this.gender = gender;
         this.username = username;
         this.password = password;
+
     }
 
+    public provider getProv(){
+        return  c;
+    }
+    public customer getCustomer(){
+        return d;
+    }
     public void setAge(int age) {
         this.age = age;
     }
@@ -82,6 +161,14 @@ public class user{
         return password;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     /**
      * a function that shows the characteristics of a specific user
      */
@@ -101,4 +188,14 @@ public class user{
             System.out.println("Type: Admin");
         System.out.println("\n");
     }
+    public void CreateFrameUser(){
+        userFrame=new JFrame("Create a new user.");
+        userFrame.add(userPanel);
+        userFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        userFrame.setBounds(250,250,100000,1000);
+//        AccommodationFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        userFrame.pack();
+        userFrame.setVisible(true);
+    }
+
 }

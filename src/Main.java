@@ -20,12 +20,12 @@ public class Main {
         Interface run=new Interface();
         run.menu();
 
-        customer cust=new customer(run.a.getProviders());
+        //customer cust=new customer(run.a.getProviders());
 
 
         if (run.type==1){
             provider d=new provider();
-            run.a.setProviders(cust.getDuplicate());
+           // run.a.setProviders(cust.getDuplicate());
         }
         else if (run.type==2){
             System.out.println("You can search accommodation by: name(1), price range(2), location(3). Type the number you want.");
@@ -35,7 +35,7 @@ public class Main {
                 System.out.println("Type the name you want: ");
                 name = input.nextLine();
                //if (cust.searchAccommodationByName(name))
-                    cust.resevation(name);
+                    //cust.resevation(name);
             } else if(choice==2){
                 System.out.println("Give the price range you want: ");
                 start = input.nextInt();
@@ -45,15 +45,15 @@ public class Main {
                     System.out.println("Type the name you want: ");
                     name = input.nextLine();
                     //if (cust.searchAccommodationByName(name))
-                        cust.resevation(name);                }
-            else {
+                        //cust.resevation(name);                }
+          // else {
                 System.out.println("Type the location of the accommodation: ");
                 location = input.nextLine();
                 //if (cust.searchAccommodationLocation(location)) {
                     System.out.println("Type the name you want: ");
                     name = input.nextLine();
                     //if (cust.searchAccommodationByName(name))
-                        cust.resevation(name);
+                        //cust.resevation(name);
                 }
             }
         }

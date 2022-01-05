@@ -11,7 +11,7 @@ public class reservation extends customer{
 
     public reservation(ArrayList<provider> original){
         super (original,1);
-        CreateFrame();
+        CreateReservation();
         reserveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -30,8 +30,8 @@ public class reservation extends customer{
     }
 
 
-    private void CreateFrame(){
-        reservFrame=new JFrame();
+    private void CreateReservation(){
+        reservFrame=new JFrame("Enter name.");
         reservFrame.add(reservationPanel);
         reservFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         reservFrame.setBounds(250,250,100000,1000);

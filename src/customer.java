@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class customer {
     private String monAr,monD;
-    private int dateAr,dateD;
+    private int dateAr,dateD,id;
     public ArrayList<provider> duplicate;
     HashMap<String,Integer> DaysPerMonth;
     JFrame custFrame;
@@ -19,7 +19,7 @@ public class customer {
     private JPanel customerPanel;
     private JButton reserveButton;
 
-    public customer(ArrayList<provider> original){
+    public customer(ArrayList<provider> original,int id){
         DaysPerMonth=new HashMap<>();
         DaysPerMonth.put("january",31);
         DaysPerMonth.put("february",28);
@@ -34,7 +34,7 @@ public class customer {
         DaysPerMonth.put("november",30);
         DaysPerMonth.put("december",31);
         duplicate=original;
-
+        this.id=id;
 
         findButton.addActionListener(new ActionListener() {
             @Override
@@ -42,7 +42,7 @@ public class customer {
                 searchByType a=new searchByType(duplicate);
             }
         });
-        CreateFrame();
+        //CreateFrame();
         reserveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -52,11 +52,35 @@ public class customer {
         });
     }
 
-    public customer(ArrayList<provider> original,int a){
+    public customer(ArrayList<provider> original,int a,int id){
         duplicate=original;
+        this.id=id;
+
+        findButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                searchByType a=new searchByType(duplicate);
+            }
+        });
+
+        reserveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                reservation a=new reservation(duplicate);
+                custFrame.dispose();
+            }
+        });
 
 
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public ArrayList<provider> getDuplicate() {
@@ -258,8 +282,8 @@ public class customer {
 
 
     }
-    private void CreateFrame(){
-        custFrame=new JFrame();
+    public void CreateFrame(){
+        custFrame=new JFrame("Choose your action!");
         custFrame.add(customerPanel);
         custFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         custFrame.setBounds(250,250,100000,1000);
@@ -270,7 +294,7 @@ public class customer {
 
     public static void main(String[] args){
         Interface a=new Interface();
-        customer b=new customer(a.a.getProviders());
+        //customer b=new customer(a.a.getProviders());
 
     }
 
