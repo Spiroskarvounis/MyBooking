@@ -18,6 +18,7 @@ public class customer {
     private JButton informationButton;
     private JPanel customerPanel;
     private JButton reserveButton;
+    private JButton logOutButton;
 
     public customer(ArrayList<provider> original,int id){
         DaysPerMonth=new HashMap<>();
@@ -52,25 +53,34 @@ public class customer {
         });
     }
 
-    public customer(ArrayList<provider> original,int a,int id){
-        duplicate=original;
-        this.id=id;
+    public customer(ArrayList<provider> original,int a,int id) {
+        duplicate = original;
+        this.id = id;
 
         findButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                searchByType a=new searchByType(duplicate);
+                searchByType a = new searchByType(duplicate);
             }
         });
 
         reserveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                reservation a=new reservation(duplicate);
+                reservation a = new reservation(duplicate);
+
+            }
+        });
+        logOutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 custFrame.dispose();
             }
         });
 
+
+    }
+    public customer(){
 
 
     }
@@ -264,17 +274,13 @@ public class customer {
      * this method makes a reservation according to the name of the hotel
      * @param name the name of the hotel that the reservation will be done
      */
-    public void resevation(String name){
+    public void reservation(String name){
         for(provider i:duplicate){
             for(accommodation j:i.buildings){
                 if(name.equals(j.getName())){
                     if(j.cal==null){
                          j.cal=new Calendar();
                     }
-                       monAr=j.cal.getArrMon();
-                       monD=j.cal.getDepMon();
-                       dateAr=j.cal.getArrDate();
-                       dateD=j.cal.getDepDate();
 
                 }
             }

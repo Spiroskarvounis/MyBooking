@@ -21,7 +21,7 @@ public class reservation extends customer{
                     JOptionPane.getRootFrame().dispose();
                 }
                 else {
-                    resevation(name1);
+                    reservation(name1);
                     reservFrame.dispose();
 
                 }

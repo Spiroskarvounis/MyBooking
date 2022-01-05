@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
-public class Calendar {
+public class Calendar{
     HashMap<String,Integer> DaysPerMonth;
     HashMap<String,Integer> numberOfMonth;
     HashMap<Integer,Boolean> AvailableDays;
@@ -130,7 +130,7 @@ public class Calendar {
                 int count=0;
                 boolean state=rentDays(arrMon,arrDate,depMon,depDate);
                 if(state){
-                    JOptionPane.showMessageDialog(null,"Successfull reservation!");
+                    JOptionPane.showMessageDialog(null,"You will stay at our facilities from "+arrDate+" of "+ arrMon +" ,until "+depDate+" of "+depMon+"!");
                     JOptionPane.getRootFrame().dispose();
                     calFrame.dispose();
                 }
@@ -145,6 +145,7 @@ public class Calendar {
 
             }
         });
+
     }
 
     public HashMap<String, Integer> getDaysPerMonth() {
