@@ -97,8 +97,8 @@
         </constraints>
         <properties>
           <model>
-            <item value="Male "/>
-            <item value="Female "/>
+            <item value="Male"/>
+            <item value="Female"/>
             <item value="Other"/>
           </model>
         </properties>
@@ -129,7 +129,6 @@
           <model>
             <item value="Customer"/>
             <item value="Provider"/>
-            <item value="Admin"/>
           </model>
         </properties>
       </component>

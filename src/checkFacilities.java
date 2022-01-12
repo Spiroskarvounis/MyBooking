@@ -42,7 +42,7 @@ public class checkFacilities {
         checkFrame.add(checkPanel);
         checkFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         checkFrame.setPreferredSize(new Dimension(200,100));
-        checkFrame.setBounds(250,250,300,200);
+        checkFrame.setBounds(700,250,300,200);
 
         checkFrame.setVisible(true);
     }

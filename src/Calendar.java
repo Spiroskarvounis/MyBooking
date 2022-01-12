@@ -234,7 +234,7 @@ public class Calendar{
 
         calFrame=new JFrame("Choose your dates.");
         calFrame.add(calPanel);
-        calFrame.setBounds(250,250,100000,1000);
+        calFrame.setBounds(700,250,100000,1000);
         calFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 //        AccommodationFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         calFrame.pack();

@@ -32,7 +32,7 @@ public class AddExtraFacility extends provider{
     private void createFr(){
         fr=new JFrame();
         fr.add(jpan);
-        fr.setBounds(250,250,100000,1000);
+        fr.setBounds(700,250,100000,1000);
         fr.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 //        AccommodationFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         fr.pack();

@@ -52,7 +52,13 @@ public class searchByType extends customer{
                     }
                 }
                 else if(typeSearch.equals("square metres")){
-                    name1=searchAccommodationSquareMetres(Integer.parseInt(search));
+                    try{
+                        name1=searchAccommodationSquareMetres(Integer.parseInt(search));
+                    }
+                    catch (NullPointerException | NumberFormatException r){
+                        JOptionPane.showMessageDialog(null,"Enter valid search type.");
+                        JOptionPane.getRootFrame().dispose();
+                    }
                     if(name1==null){
                         typeLabel.setText("There is no facility with the desirable square metres.Try again.");
                     }
@@ -65,9 +71,15 @@ public class searchByType extends customer{
                     }
                 }
                 else if(typeSearch.equals("price")){
-                    System.out.println(searchAccommodationByPriceRange(Integer.parseInt(search)));
-                    name1=searchAccommodationByPriceRange(Integer.parseInt(search));
+                    try{
+                         name1=searchAccommodationByPriceRange(Integer.parseInt(search));
+                    }
+                    catch (NullPointerException | NumberFormatException r){
+                        JOptionPane.showMessageDialog(null,"Enter valid search type.");
+                        JOptionPane.getRootFrame().dispose();
+                    }
                     if(name1==null){
+                        typeLabel.setPreferredSize(new Dimension(40,40));
                         typeLabel.setText("There is no facility with the price range you ask for .Try again.");
                     }
                     else{
@@ -80,7 +92,13 @@ public class searchByType extends customer{
                 }
                 else if(typeSearch.equals("capacity")){
                     System.out.println(searchAccommodationByPriceRange(Integer.parseInt(search)));
-                    name1=searchAccommodationByCapacity(Integer.parseInt(search));
+                    try{
+                        name1=searchAccommodationByCapacity(Integer.parseInt(search));
+                    }
+                    catch (NullPointerException | NumberFormatException r){
+                        JOptionPane.showMessageDialog(null,"Enter valid search type.");
+                        JOptionPane.getRootFrame().dispose();
+                    }
                     if(name1==null){
                         typeLabel.setText("There is no facility with the capacity you ask for .Try again.");
                     }
@@ -110,7 +128,7 @@ public class searchByType extends customer{
         searchFrame=new JFrame("Search facilities.");
         searchFrame.add(searchPanel);
         searchFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        searchFrame.setBounds(250,250,10000000,10000000);
+        searchFrame.setBounds(700,250,10000000,10000000);
         searchFrame.setPreferredSize(new Dimension(800,300));
         //searchFrame.setSize(1000,1000);
 //        AccommodationFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

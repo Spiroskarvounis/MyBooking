@@ -34,7 +34,7 @@ public class reservation extends customer{
         reservFrame=new JFrame("Enter name.");
         reservFrame.add(reservationPanel);
         reservFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        reservFrame.setBounds(250,250,100000,1000);
+        reservFrame.setBounds(700,250,100000,1000);
 //        AccommodationFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         reservFrame.pack();
         reservFrame.setVisible(true);

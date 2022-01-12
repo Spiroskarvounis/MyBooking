@@ -28,44 +28,51 @@ public class user{
         singupButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(Arrays.equals(passwordField1.getPassword(),passwordConfirmField2.getPassword())){
-                    name=nameField.getText();
-                    surname=surnameField.getText();
-                    age=Integer.parseInt(ageField.getText());
-                    String tmp=(String) comboBox2.getSelectedItem();
-                    if(tmp.equals("Provider")){
-                        type=1;
-                    }
-                    else if(tmp.equals("Customer")){
-                        type=2;
-                    }
-                    else {
-                        type=3;
-                    }
-                    gender=(String)  comboBox1.getSelectedItem();
-                    surname=surnameField.getText();
-                    password=String.valueOf(passwordField1.getPassword());
-                    JOptionPane.showMessageDialog(null,"Successful registration!!!");
-                    JOptionPane.getRootFrame().dispose();
-                    userFrame.dispose();
 
-
-                    if(getType()==1){
-                         c= new provider(getUsername(),id);
-                        JOptionPane.showMessageDialog(null,"You are now logged in as a provider.Press okey to continue.");
+                try{
+                    if(Arrays.equals(passwordField1.getPassword(),passwordConfirmField2.getPassword()) && passwordConfirmField2.getPassword().length!=0 && passwordField1.getPassword().length!=0){
+                        name=nameField.getText();
+                        surname=surnameField.getText();
+                        age=Integer.parseInt(ageField.getText());
+                        String tmp=(String) comboBox2.getSelectedItem();
+                        if(tmp.equals("Provider")){
+                            type=1;
+                        }
+                        else if(tmp.equals("Customer")){
+                            type=2;
+                        }
+                        else {
+                            type=3;
+                        }
+                        gender=(String)  comboBox1.getSelectedItem();
+                        surname=surnameField.getText();
+                        password=String.valueOf(passwordField1.getPassword());
+                        JOptionPane.showMessageDialog(null,"Successful registration!!!");
                         JOptionPane.getRootFrame().dispose();
-                        c.CreateFrame();
-                    }
-                    else  if(getType()==2){
-                        d=new customer(acc.getProviders(),id);
-                        JOptionPane.showMessageDialog(null,"You are now logged in as a customer.Press okey to continue.");
-                        JOptionPane.getRootFrame().dispose();
-                        d.CreateFrame();
-                    }
+                        userFrame.dispose();
 
+
+                        if(getType()==1){
+                            c= new provider(getUsername(),id);
+                            JOptionPane.showMessageDialog(null,"You are now logged in as a provider.Press okey to continue.");
+                            JOptionPane.getRootFrame().dispose();
+                            c.CreateFrame();
+                        }
+                        else  if(getType()==2){
+                            d=new customer(acc.getProviders(),id);
+                            JOptionPane.showMessageDialog(null,"You are now logged in as a customer.Press okey to continue.");
+                            JOptionPane.getRootFrame().dispose();
+                            d.CreateFrame();
+                        }
+
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null,"Password confirmation wrong.Please enter again the password.");
+                        JOptionPane.getRootFrame().dispose();
+                    }
                 }
-                else{
-                    JOptionPane.showMessageDialog(null,"Password confirmation wrong.Please enter again the password.");
+                catch (NumberFormatException |NullPointerException r){
+                    JOptionPane.showMessageDialog(null,"Enter valid information.Try again.");
                     JOptionPane.getRootFrame().dispose();
                 }
             }
@@ -192,7 +199,7 @@ public class user{
         userFrame=new JFrame("Create a new user.");
         userFrame.add(userPanel);
         userFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        userFrame.setBounds(250,250,100000,1000);
+        userFrame.setBounds(700,250,100000,1000);
 //        AccommodationFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         userFrame.pack();
         userFrame.setVisible(true);

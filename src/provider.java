@@ -47,8 +47,12 @@ public class provider {
         checkFac.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    checkFacilities a=new checkFacilities(buildings);
-
+                if(buildings==null){
+                    JOptionPane.showMessageDialog(null,"There is no facility yet.Please enter a facility first.");
+                }
+                else {
+                    checkFacilities a = new checkFacilities(buildings);
+                }
             }
         });
         logOutButton.addActionListener(new ActionListener() {
@@ -96,9 +100,12 @@ public class provider {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frameProv.dispose();
-            }
-        });
+                Interface b=new Interface();
+                b.CreateFrame();
 
+            }
+
+        });
     }
 
     public int getId() {
@@ -143,7 +150,7 @@ public class provider {
        frameProv=new JFrame("Choose your actions!");
        frameProv.add(providerPanel);
        frameProv.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-       frameProv.setBounds(250,250,100000,1000);
+       frameProv.setBounds(700,250,100000,1000);
 //        AccommodationFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
        frameProv.pack();
        frameProv.setVisible(true);
