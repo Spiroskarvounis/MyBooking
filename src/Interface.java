@@ -9,11 +9,12 @@ public class Interface {
     ArrayList<user> users ;
     HashMap<String,String> login_info = new HashMap<>();
     ArrayList <customer> customers ;
+    Files files;
 
 
     Scanner input = new Scanner(System.in);
     int age, type, choice,id=0;
-    String in, gender, name, surname, username, password;
+    //String in, gender, name, surname, username, password;
     private JButton logInButtton;
     private JTextField usernanameField;
     private JPasswordField passwordField1;
@@ -59,6 +60,8 @@ public class Interface {
      *
      */
     public Interface(){
+
+        files=new Files();
         a=new AccommodationManagement();
         users=new ArrayList<>();
         customers = new ArrayList<>();
@@ -68,7 +71,7 @@ public class Interface {
         characteristics.add("pool");
         characteristics.add("parking");
         characteristics.add("wifi");
-        a.addProvider(createProvider("palace",30,600,1000,"saint louis",characteristics,"hotel","pappas"));
+        a.addProvider(createProvider("palace",30,600,1000,"saint louis",characteristics,"hotel","nikpap"));
         addUser(43,1,"male","sakis","tanimanidis","saktan","sakis111",id);
        // characteristics.removeAll(characteristics);
         characteristics.add("wifi");
@@ -82,13 +85,29 @@ public class Interface {
         //characteristics.add("central heat");
         //characteristics.add("quiet");
         a.addProvider(createProvider("wooden house",20,63,2,"kastoria",characteristics,"airbnb","elekont"));
-        id++;
         addUser(45,2,"male","john","karas","johnk","john123",id);
         customer cust=new customer(a.getProviders(),3,id);
         customers.add(cust);
         id++;
         addUser(37,3,"female","maria","theodorou","mtheo","123maria",id);
         id++;
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// files
+        /*
+        files.SaveLogin(login_info);
+        login_info=files.LoadLogin();
+        login_info.forEach(
+                (key, value)
+                        -> System.out.println(key + " = " + value));
+        System.out.println("-----------------------------------------");
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        for (int i=0; i<users.size(); i++){
+            System.out.println(users.get(i).getUsername()+", id: "+ users.get(i).getId());
+        }
+
+         */
+
         CreateFrame();
         logInButtton.addActionListener(new ActionListener() {
             @Override
@@ -154,6 +173,14 @@ public class Interface {
                 id++;
             }
         });
+/*
+        login_info.forEach(
+                (key, value)
+                        -> System.out.println(key + " = " + value));
+        files.SaveLogin(login_info);  ///////////////////////////////////////////////////////////////////////////////////////////
+
+ */
+
     }
 
     /**
@@ -192,7 +219,9 @@ public class Interface {
         interfaceFrame.setVisible(true);
     }
     public static void main(String[] args){
+
          Interface a=new Interface();
+
     }
 
 

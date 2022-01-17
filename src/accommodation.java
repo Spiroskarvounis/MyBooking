@@ -71,6 +71,7 @@ public class accommodation  {
                 JOptionPane.showMessageDialog(null, "Your sumbision is successfull!");
                 JOptionPane.getRootFrame().dispose();
                 AccommodationFrame.dispose();
+                ////////////////////////////////////////////////////////////////////////////////////////// try to save the accommodation here
 
 
             }});

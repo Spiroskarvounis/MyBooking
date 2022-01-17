@@ -21,6 +21,7 @@ public class user{
     JFrame userFrame;
     provider c;
     customer d;
+    Files files;
 
 
     public user (int id,AccommodationManagement acc){
@@ -52,7 +53,7 @@ public class user{
 
                     if(getType()==1){
                          c= new provider(getUsername(),id);
-                        JOptionPane.showMessageDialog(null,"You are now logged in as a provider.Press okey to continue.");
+                        JOptionPane.showMessageDialog(null,"You are now logged in as a provider.Press okay to continue.");
                         JOptionPane.getRootFrame().dispose();
                         c.CreateFrame();
                     }
@@ -72,6 +73,9 @@ public class user{
 
         });
         CreateFrameUser();
+        //login_info.put(tmp.getUsername(), tmp.getPassword());
+        //System.out.println(this.getUsername() +", "+ this.getPassword());
+        //files.SaveUsers(login_info);
     }
 
     /**
@@ -96,6 +100,7 @@ public class user{
         this.gender = gender;
         this.username = username;
         this.password = password;
+        files=new Files();
 
     }
 
