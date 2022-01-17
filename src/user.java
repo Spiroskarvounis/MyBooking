@@ -67,11 +67,11 @@ public class user{
 
                     }
                     else{
-                        JOptionPane.showMessageDialog(null,"Password confirmation wrong.Please enter again the password.");
+                        JOptionPane.showMessageDialog(null,"Please insert valid data.Try again.");
                         JOptionPane.getRootFrame().dispose();
                     }
                 }
-                catch (NumberFormatException |NullPointerException r){
+                catch (NumberFormatException r){
                     JOptionPane.showMessageDialog(null,"Enter valid information.Try again.");
                     JOptionPane.getRootFrame().dispose();
                 }
