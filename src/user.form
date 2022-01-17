@@ -129,7 +129,6 @@
           <model>
             <item value="Customer"/>
             <item value="Provider"/>
-            <item value="Admin"/>
           </model>
         </properties>
       </component>

@@ -58,20 +58,36 @@ public class accommodation  {
         SumbitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setName(WriteName.getText());
-                setLocation(WriteLocation.getText());
-                setPrice(Integer.parseInt(WritePrice.getText()));
-                setSquareMetres(Integer.parseInt(WriteSquareMetres.getText()));
-                setCapacity(Integer.parseInt(WriteCapacity.getText()));
-                String tmp = WriteCharacteristics.getText();
-                String[] tmp1 = tmp.split(",");
-                for (String i : tmp1) {
-                    addCharacteristics(i);
-                }
-                JOptionPane.showMessageDialog(null, "Your sumbision is successfull!");
-                JOptionPane.getRootFrame().dispose();
-                AccommodationFrame.dispose();
-                ////////////////////////////////////////////////////////////////////////////////////////// try to save the accommodation here
+
+
+                    try {
+                        if(WriteName.getText().length()==0 || WriteName.getText()==null || WriteLocation.getText().length()==0 || WriteLocation.getText()==null ||  WriteCharacteristics.getText().length()==0 ||  WriteCharacteristics.getText()==null ){
+                            JOptionPane.showMessageDialog(null,"Please enter valid information.Thanks.");
+                            JOptionPane.getRootFrame().dispose();
+                        }
+                        else {
+                            setName(WriteName.getText());
+                            setLocation(WriteLocation.getText());
+                            setPrice(Integer.parseInt(WritePrice.getText()));
+                            setSquareMetres(Integer.parseInt(WriteSquareMetres.getText()));
+                            setCapacity(Integer.parseInt(WriteCapacity.getText()));
+                            String tmp = WriteCharacteristics.getText();
+                            String[] tmp1 = tmp.split(",");
+                            for (String i : tmp1) {
+                                addCharacteristics(i);
+                            }
+                            JOptionPane.showMessageDialog(null, "Your sumbision is successfull!");
+                            JOptionPane.getRootFrame().dispose();
+                            AccommodationFrame.dispose();
+                        }
+                    }
+                    catch (NumberFormatException | NullPointerException r){
+                        JOptionPane.showMessageDialog(null,"Please enter valid information.Thanks.");
+                        JOptionPane.getRootFrame().dispose();
+                    }
+
+
+
 
 
             }});
@@ -185,7 +201,7 @@ public class accommodation  {
         AccommodationFrame=new JFrame("Enter facility,");
         AccommodationFrame.add(accommodationPanel);
         AccommodationFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        AccommodationFrame.setBounds(250,250,100000,1000);
+        AccommodationFrame.setBounds(700,250,100000,1000);
 //        AccommodationFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         AccommodationFrame.pack();
         AccommodationFrame.setVisible(true);

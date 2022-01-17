@@ -25,7 +25,7 @@ public class showInformation extends customer {
          showFrame=new JFrame("Your days of relaxation are:");
         showFrame.add(showPanel);
         showFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        showFrame.setBounds(250,250,100000,1000);
+        showFrame.setBounds(700,250,100000,1000);
 //        AccommodationFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         showFrame.pack();
         showFrame.setVisible(true);

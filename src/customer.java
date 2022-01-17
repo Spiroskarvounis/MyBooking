@@ -51,6 +51,15 @@ public class customer {
                 custFrame.dispose();
             }
         });
+
+        logOutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                custFrame.dispose();
+                Interface b=new Interface();
+                b.CreateFrame();
+            }
+        });
     }
 
     public customer(ArrayList<provider> original,int a,int id) {
@@ -75,6 +84,8 @@ public class customer {
             @Override
             public void actionPerformed(ActionEvent e) {
                 custFrame.dispose();
+                Interface b=new Interface();
+                b.CreateFrame();
             }
         });
 
@@ -292,7 +303,7 @@ public class customer {
         custFrame=new JFrame("Choose your action!");
         custFrame.add(customerPanel);
         custFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        custFrame.setBounds(250,250,100000,1000);
+        custFrame.setBounds(700,250,100000,1000);
 //        AccommodationFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         custFrame.pack();
         custFrame.setVisible(true);

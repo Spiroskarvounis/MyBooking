@@ -112,7 +112,7 @@ public class Interface {
         logInButtton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                boolean found=false;
+
                 String username=usernanameField.getText();
                 String pass=String.valueOf(passwordField1.getPassword());
                 String type=(String)comboBox1.getSelectedItem();
@@ -123,37 +123,50 @@ public class Interface {
                 else if(type.equals("provider")){
                     typeOfUser=1;
                 }
-                else
+                else{
                     typeOfUser=2;
-                for(user i:users){
-                    if(i.getUsername().contains(username) && i.getPassword().contains(pass) && i.getType()==typeOfUser){
-                        found=true;
-                        JOptionPane.showMessageDialog(null,"Successful log in !!");
-                        JOptionPane.getRootFrame().dispose();
-                        if(typeOfUser==1){
-                            for(provider k:a.getProviders()){
-                                if(i.getId()==k.getId()){
-                                    k.CreateFrame();
-                                    interfaceFrame.dispose();
-                                }
-                            }
-                        }
-                        else if(typeOfUser==2){
-                            for(customer k:customers){
-                                if(i.getId()==k.getId()){
-                                    k.CreateFrame();
-                                    interfaceFrame.dispose();
-                                }
-                            }
-
-                        }
-                        else {
-
-                        }
-                    }
                 }
-                if(!found){
-                    JOptionPane.showMessageDialog(null,"Fail sing in!Please try again." );
+                boolean found=false;
+                if(typeOfUser==3){
+                    JOptionPane.showMessageDialog(null,"Right now you can't login as an admin.Try again later");
+                }
+                else{
+                      for(user i:users){
+                          if (username==null || pass==null || username.length()==0 || pass.length()==0){
+                              JOptionPane.showMessageDialog(null,"Enter valid input.Try again.");
+                              JOptionPane.getRootFrame().dispose();
+                              break;
+                          }
+                          else if (i.getUsername().contains(username) && i.getPassword().contains(pass) && i.getType()==typeOfUser){
+                              found=true;
+                              JOptionPane.showMessageDialog(null,"Successful log in !!");
+                              JOptionPane.getRootFrame().dispose();
+                              if(typeOfUser==1){
+                                  for(provider k:a.getProviders()){
+                                      if(i.getId()==k.getId()){
+                                          k.CreateFrame();
+                                          interfaceFrame.dispose();
+                                      }
+                                  }
+                              }
+                              else if(typeOfUser==2){
+                                  for(customer k:customers){
+                                      if(i.getId()==k.getId()){
+                                          k.CreateFrame();
+                                          interfaceFrame.dispose();
+                                      }
+                                  }
+
+                              }
+
+                          }
+
+                      }
+
+                      if(!found && pass!=null && username!=null && pass.length()!=0 && username.length()!=0){
+                          JOptionPane.showMessageDialog(null,"Enter valid input.Try again.");
+                          JOptionPane.getRootFrame().dispose();
+                      }
                 }
 
             }
@@ -183,6 +196,10 @@ public class Interface {
 
     }
 
+
+
+
+
     /**
      *This function adds a new user at the array list of users, using the setters of the class {@link user}.
      * It also stores the new user's username and password in the hash map used for the login.
@@ -208,12 +225,11 @@ public class Interface {
      */
 
 
-
-    private void CreateFrame(){
+   public void CreateFrame(){
         interfaceFrame=new JFrame("Enter to our world!");
         interfaceFrame.add(interfacePanel);
         interfaceFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        interfaceFrame.setBounds(250,250,100000,1000);
+        interfaceFrame.setBounds(700,250,100000,1000);
 //        AccommodationFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         interfaceFrame.pack();
         interfaceFrame.setVisible(true);
@@ -221,7 +237,7 @@ public class Interface {
     public static void main(String[] args){
 
          Interface a=new Interface();
-
+        a.CreateFrame();
     }
 
 
