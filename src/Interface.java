@@ -9,6 +9,7 @@ public class Interface {
     ArrayList<user> users ;
     HashMap<String,String> login_info = new HashMap<>();
     ArrayList <customer> customers ;
+    ArrayList <admin> admins;
 
 
     Scanner input = new Scanner(System.in);
@@ -62,6 +63,7 @@ public class Interface {
         a=new AccommodationManagement();
         users=new ArrayList<>();
         customers = new ArrayList<>();
+        admins =new ArrayList<>();
         addUser(29,1,"male","nikos","pappas","nikpap","pap1992",id);
         HashSet<String> characteristics=new HashSet<>();
         HashSet<String> em=new HashSet<>();
@@ -88,6 +90,9 @@ public class Interface {
         customers.add(cust);
         id++;
         addUser(37,3,"female","maria","theodorou","mtheo","123maria",id);
+        admin adm=new admin(id,users );
+        admins.add(adm);
+
         id++;
         logInButtton.addActionListener(new ActionListener() {
             @Override
@@ -107,47 +112,51 @@ public class Interface {
                     typeOfUser=2;
                 }
                 boolean found=false;
-                if(typeOfUser==3){
-                    JOptionPane.showMessageDialog(null,"Right now you can't login as an admin.Try again later");
+
+                for(user i:users){
+                    if (username==null || pass==null || username.length()==0 || pass.length()==0){
+                        JOptionPane.showMessageDialog(null,"Enter valid input.Try again.");
+                        JOptionPane.getRootFrame().dispose();
+                        break;
+                    }
+                    else if (i.getUsername().contains(username) && i.getPassword().contains(pass) && i.getType()==typeOfUser){
+                        found=true;
+                        JOptionPane.showMessageDialog(null,"Successful log in !!");
+                        JOptionPane.getRootFrame().dispose();
+                        if(typeOfUser==1){
+                            for(provider k:a.getProviders()){
+                                if(i.getId()==k.getId()){
+                                    k.CreateFrame();
+                                    interfaceFrame.dispose();
+                                }
+                            }
+                        }
+                        else if(typeOfUser==2){
+                            for(customer k:customers){
+                                if(i.getId()==k.getId()){
+                                    k.CreateFrame();
+                                    interfaceFrame.dispose();
+                                }
+                            }
+
+                        }
+                        else {
+                            for(admin k:admins){if(i.getId()==k.getId()){
+                                k.CreateFrame();
+                                interfaceFrame.dispose();
+                            }
+
+                            }
+                        }
+                    }
+
+
                 }
-                else{
-                      for(user i:users){
-                          if (username==null || pass==null || username.length()==0 || pass.length()==0){
-                              JOptionPane.showMessageDialog(null,"Enter valid input.Try again.");
-                              JOptionPane.getRootFrame().dispose();
-                              break;
-                          }
-                          else if (i.getUsername().contains(username) && i.getPassword().contains(pass) && i.getType()==typeOfUser){
-                              found=true;
-                              JOptionPane.showMessageDialog(null,"Successful log in !!");
-                              JOptionPane.getRootFrame().dispose();
-                              if(typeOfUser==1){
-                                  for(provider k:a.getProviders()){
-                                      if(i.getId()==k.getId()){
-                                          k.CreateFrame();
-                                          interfaceFrame.dispose();
-                                      }
-                                  }
-                              }
-                              else if(typeOfUser==2){
-                                  for(customer k:customers){
-                                      if(i.getId()==k.getId()){
-                                          k.CreateFrame();
-                                          interfaceFrame.dispose();
-                                      }
-                                  }
-
-                              }
-
-                          }
-
-                      }
-
-                      if(!found && pass!=null && username!=null && pass.length()!=0 && username.length()!=0){
-                          JOptionPane.showMessageDialog(null,"Enter valid input.Try again.");
-                          JOptionPane.getRootFrame().dispose();
-                      }
+                if(!found && pass!=null && username!=null && pass.length()!=0 && username.length()!=0){
+                    JOptionPane.showMessageDialog(null,"Enter valid input.Try again.");
+                    JOptionPane.getRootFrame().dispose();
                 }
+
 
 
             }

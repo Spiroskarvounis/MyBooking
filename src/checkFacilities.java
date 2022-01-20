@@ -22,6 +22,8 @@ public class checkFacilities {
                     count++;
                 }
                 else{
+                    JOptionPane.showMessageDialog(null,"There are no more facilities to see.");
+                    JOptionPane.getRootFrame().dispose();
                     checkFrame.dispose();
                 }
 
