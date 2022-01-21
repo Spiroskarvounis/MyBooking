@@ -4,12 +4,14 @@ import java.util.HashMap;
 public class AccommodationManagement {
     // an array list that contains all the providers and each provider has it own accommodation
     public static ArrayList<provider> providers;
+    Files files;
 
     /**
      * default constructor
      */
     public AccommodationManagement(){
         providers=new ArrayList<>();
+        files=new Files();
     }
 
     public  ArrayList<provider> getProviders() {

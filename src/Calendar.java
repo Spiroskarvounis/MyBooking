@@ -14,7 +14,7 @@ public class Calendar{
     private String depMon;
     private int arrDate;
     private int depDate;
-
+/*
     public String getArrMon() {
         return arrMon;
     }
@@ -46,6 +46,8 @@ public class Calendar{
     public void setDepDate(int depDate) {
         this.depDate = depDate;
     }
+
+ */
 
 
     private JPanel calPanel;
@@ -147,7 +149,7 @@ public class Calendar{
         });
 
     }
-
+/*
     public HashMap<String, Integer> getDaysPerMonth() {
         return DaysPerMonth;
     }
@@ -163,6 +165,8 @@ public class Calendar{
     public void setAvailableDays(HashMap<Integer, Boolean> availableDays) {
         AvailableDays = availableDays;
     }
+
+ */
     public ArrayList<Integer> sortDays(){
         ArrayList<Integer> tmp = new ArrayList<>(AvailableDays.keySet());
         Collections.sort(tmp);
@@ -195,13 +199,13 @@ public class Calendar{
         //showRentDays(monthArrive,arrival%100,monthDeparture,departure%100,returnType);
         return returnType;
     }
-
+/*
     public void showRentDays(String monthArrive,int arrival,String monthDeparture,int departure,boolean returnType){
         if(returnType)
             System.out.println("Your visit in our place will last from "+arrival + " of "+monthArrive+" to "+ departure +" of "+monthDeparture+"!");
 
     }
-    public void preferableDaysOfStay(){
+        public void preferableDaysOfStay(){
         String monAr,monD;
         int dateAr,dateD;
         Scanner read=new Scanner(System.in);
@@ -230,6 +234,8 @@ public class Calendar{
         }
         rentDays(monAr,dateAr,monD,dateD);
     }
+
+ */
     public void createFr(){
 
         calFrame=new JFrame("Choose your dates.");

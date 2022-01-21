@@ -56,6 +56,8 @@ public class Interface {
      *
      */
     public Interface(){
+
+
         a=new AccommodationManagement();
         users=new ArrayList<>();
         customers = new ArrayList<>();
@@ -66,7 +68,7 @@ public class Interface {
         characteristics.add("pool");
         characteristics.add("parking");
         characteristics.add("wifi");
-        a.addProvider(createProvider("palace",30,600,1000,"saint louis",characteristics,"hotel","pappas"));
+        a.addProvider(createProvider("palace",30,600,1000,"saint louis",characteristics,"hotel","nikpap"));
         addUser(43,1,"male","sakis","tanimanidis","saktan","sakis111",id);
        // characteristics.removeAll(characteristics);
         characteristics.add("wifi");
@@ -80,7 +82,6 @@ public class Interface {
         //characteristics.add("central heat");
         //characteristics.add("quiet");
         a.addProvider(createProvider("wooden house",20,63,2,"kastoria",characteristics,"airbnb","elekont"));
-        id++;
         addUser(45,2,"male","john","karas","johnk","john123",id);
         customer cust=new customer(a.getProviders(),3,id);
         customers.add(cust);
@@ -88,8 +89,25 @@ public class Interface {
         addUser(37,3,"female","maria","theodorou","mtheo","123maria",id);
         admin adm=new admin(id,users );
         admins.add(adm);
-
         id++;
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// files
+        /*
+        files.SaveLogin(login_info);
+        login_info=files.LoadLogin();
+        login_info.forEach(
+                (key, value)
+                        -> System.out.println(key + " = " + value));
+        System.out.println("-----------------------------------------");
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        for (int i=0; i<users.size(); i++){
+            System.out.println(users.get(i).getUsername()+", id: "+ users.get(i).getId());
+        }
+
+         */
+
+        CreateFrame();
         logInButtton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -147,12 +165,12 @@ public class Interface {
                     }
 
 
+
                 }
                 if(!found && pass!=null && username!=null && pass.length()!=0 && username.length()!=0){
                     JOptionPane.showMessageDialog(null,"Enter valid input.Try again.");
                     JOptionPane.getRootFrame().dispose();
                 }
-
 
 
             }
@@ -168,15 +186,18 @@ public class Interface {
                 else if(tmp.getType()==2){
                     customers.add(tmp.getCustomer());
                 }
-
-
-
-
-
                 users.add(tmp);
                 id++;
             }
         });
+/*
+        login_info.forEach(
+                (key, value)
+                        -> System.out.println(key + " = " + value));
+        files.SaveLogin(login_info);  ///////////////////////////////////////////////////////////////////////////////////////////
+
+ */
+
     }
 
 

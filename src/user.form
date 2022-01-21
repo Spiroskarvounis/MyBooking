@@ -174,7 +174,7 @@
         </constraints>
         <properties>
           <font name="DejaVu Sans Mono" size="16" style="2"/>
-          <text value="Sing up!"/>
+          <text value="Sign up!"/>
         </properties>
       </component>
     </children>
