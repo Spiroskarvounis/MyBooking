@@ -47,7 +47,7 @@ public class showUserINf {
         infFrame.pack();
         infFrame.setVisible(true);
     }
-    public String convertType(int a){
+    private  String convertType(int a){
         if(a==1){
             return "provider";
 
