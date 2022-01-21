@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -55,6 +54,7 @@ public class AddExtraFacility extends provider{
 
      */
 
+    /*
     public accommodation getAc() {
         return ac;
     }
@@ -62,4 +62,6 @@ public class AddExtraFacility extends provider{
     public void setAc(accommodation ac) {
         this.ac = ac;
     }
+
+     */
 }

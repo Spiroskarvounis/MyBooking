@@ -1,16 +1,22 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 import java.util.*;
+import java.io.Serializable;
 
 
-public class Interface {
+
+public class Interface implements Serializable {
     AccommodationManagement a;
     ArrayList<user> users ;
-    HashMap<String,String> login_info = new HashMap<>();
+    public HashMap<String,String> login_info = new HashMap<>();
     ArrayList <customer> customers ;
     ArrayList <admin> admins;
     int id=0;
+
+
+
     private JButton logInButtton;
     private JTextField usernanameField;
     private JPasswordField passwordField1;
@@ -22,11 +28,43 @@ public class Interface {
     private JComboBox comboBox1;
     JFrame interfaceFrame;
 
+    public static List<?> convertObjectToList(Object obj) {
+        List<?> list = new ArrayList<>();
+        if (obj.getClass().isArray()) {
+            list = Arrays.asList((Object[])obj);
+        } else if (obj instanceof Collection) {
+            list = new ArrayList<>((Collection<?>)obj);
+        }
+        return list;
+    }
+
+    public  ArrayList<user> LoadUsers(String filename) {
+        ArrayList<user> us = new ArrayList<>();
+        try (ObjectInputStream ois = new ObjectInputStream (new FileInputStream(filename))){
+            us = (ArrayList<user>)convertObjectToList( ois.readObject());
+
+        } catch (IOException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+
+        return us;
+    }
+
+    public void SaveUsers(ArrayList<user> us, String filename){
+
+        try (ObjectOutputStream oos = new ObjectOutputStream (new FileOutputStream(filename))){
+            oos.writeObject(us);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+
     /**
      *This function takes all the characteristics of a provider and his hotel/airbnb and creates him.
      * @return the new provider
      */
-    public provider createProvider(String name,int price,int squareMetres,int capacity,String location,HashSet characteristics,String type,String username){
+    public provider createProvider(String name,int price,int squareMetres,int capacity,String location,HashSet<String> characteristics,String type,String username){
         ArrayList<accommodation> resorts=new ArrayList<>();
         hotel hotel;
         airbnb airbnb;
@@ -57,14 +95,17 @@ public class Interface {
      */
     public Interface(){
 
-
         a=new AccommodationManagement();
         users=new ArrayList<>();
         customers = new ArrayList<>();
+
+        for (int i=0; i<a.getProviders().size(); i++){
+            System.out.println(a.getProviders().get(i).getUsername()+" = "+a.getProviders().get(i).getId());
+        }
+
         admins =new ArrayList<>();
         addUser(29,1,"male","nikos","pappas","nikpap","pap1992",id);
         HashSet<String> characteristics=new HashSet<>();
-        HashSet<String> em=new HashSet<>();
         characteristics.add("pool");
         characteristics.add("parking");
         characteristics.add("wifi");
@@ -91,21 +132,14 @@ public class Interface {
         admins.add(adm);
         id++;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// files
-        /*
-        files.SaveLogin(login_info);
-        login_info=files.LoadLogin();
-        login_info.forEach(
-                (key, value)
-                        -> System.out.println(key + " = " + value));
-        System.out.println("-----------------------------------------");
 
+
+        SaveUsers(users, "users_info.bin");
+        users=LoadUsers("users_info.bin");
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        for (int i=0; i<users.size(); i++){
-            System.out.println(users.get(i).getUsername()+", id: "+ users.get(i).getId());
-        }
 
-         */
+
 
         CreateFrame();
         logInButtton.addActionListener(new ActionListener() {
@@ -171,10 +205,10 @@ public class Interface {
                     JOptionPane.showMessageDialog(null,"Enter valid input.Try again.");
                     JOptionPane.getRootFrame().dispose();
                 }
-
-
             }
         });
+
+
         createAccButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -188,15 +222,12 @@ public class Interface {
                 }
                 users.add(tmp);
                 id++;
+                tmp.setLogin(users);
+
+
             }
         });
-/*
-        login_info.forEach(
-                (key, value)
-                        -> System.out.println(key + " = " + value));
-        files.SaveLogin(login_info);  ///////////////////////////////////////////////////////////////////////////////////////////
 
- */
 
     }
 
@@ -239,7 +270,7 @@ public class Interface {
         interfaceFrame.setVisible(true);
     }
     public static void main(String[] args){
-         Interface a=new Interface();
+         //Interface a=new Interface();
 
     }
 

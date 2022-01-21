@@ -1,5 +1,5 @@
 import java.util.HashSet;
-import java.util.Scanner;
+
 
 /**
  * hotel class that inherits from the accommodation class
@@ -30,6 +30,7 @@ public class hotel extends accommodation  {
         this.availableRooms=availableRooms;
 
     }
+    /*
     public int getAvailableRooms() {
         return availableRooms;
     }
@@ -38,14 +39,19 @@ public class hotel extends accommodation  {
         this.availableRooms = availableRooms;
     }
 
+     */
+
+
     /**
      * a method that reads the number of available rooms from the user
      */
+    /*
     public void hotelInformation(){
         System.out.println("Enter the number of the available rooms.");
         Scanner read=new Scanner(System.in);
         availableRooms =read.nextInt();
     }
+    */
 
 
     public static void main(String[] args){

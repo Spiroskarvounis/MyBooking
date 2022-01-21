@@ -1,10 +1,9 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLOutput;
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Scanner;  // Import the Scanner class
 import javax.swing.*;
-public class provider {
+public class provider implements Serializable {
     /**
      * @typeOfRental long or sort term rent
      * @typeOfAccommodation hotel,airbnb or anything else

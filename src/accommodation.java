@@ -1,9 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.Serializable;
 import java.util.*;
 
-public class accommodation  {
+public class accommodation  implements Serializable {
     /**
      * @param name the name of the facility(hotel,airbnb or anything else)
      * @param price the price of each night

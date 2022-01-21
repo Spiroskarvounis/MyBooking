@@ -1,24 +1,24 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BandCombineOp;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Scanner;
 
-public class customer {
+
+public class customer implements Serializable {
     private String monAr,monD;
     private int dateAr,dateD,id;
     public ArrayList<provider> duplicate;
     HashMap<String,Integer> DaysPerMonth;
     JFrame custFrame;
-    private JButton findButton;
-    private JLabel searching;
-    private JButton informationButton;
-    private JPanel customerPanel;
-    private JButton reserveButton;
-    private JButton logOutButton;
+    private transient JButton findButton;
+    private transient JLabel searching;
+    private transient JButton informationButton;
+    private transient JPanel customerPanel;
+    private transient JButton reserveButton;
+    private transient JButton logOutButton;
 
     public customer(ArrayList<provider> original,int id){
         DaysPerMonth=new HashMap<>();
@@ -139,10 +139,12 @@ public class customer {
     public void setMonAr(String monAr) {
         this.monAr = monAr;
     }
-
+/*
     public void setDuplicate(ArrayList<provider> duplicate) {
         this.duplicate = duplicate;
     }
+
+ */
 
     /**
      * searching if the name of a specific hotel exist
@@ -225,6 +227,7 @@ public class customer {
      * @param charact a HashSet that contains all the characteristics that the user needs(could be also 1)
      * @return returns true if ALL the characteristics exist,else returns false
      */
+    /*
     public boolean searchAccommodationByCharacteristics(HashSet<String> charact){
         int found;
         boolean returnType=false;
@@ -246,7 +249,7 @@ public class customer {
                             break;
                         }
                     }
-                }*/
+                }
                 //System.out.println(found);
                 if(found==charact.size()){
                     System.out.println("The resort '"+j.getName()+"' offers the characteristics you ask for.");
@@ -256,6 +259,8 @@ public class customer {
         }
         return returnType;
     }
+
+     */
 
 
     /**

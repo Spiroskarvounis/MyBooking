@@ -2,9 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class checkFacilities {
+public class checkFacilities implements Serializable {
     JFrame checkFrame;
     private JPanel checkPanel;
     private JButton nextButton;

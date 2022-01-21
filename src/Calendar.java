@@ -1,10 +1,10 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.util.*;
 
-public class Calendar{
+public class Calendar implements Serializable {
     HashMap<String,Integer> DaysPerMonth;
     HashMap<String,Integer> numberOfMonth;
     HashMap<Integer,Boolean> AvailableDays;
@@ -93,7 +93,6 @@ public class Calendar{
 
 
         int tmp;
-        int count=0;
         for(String i:DaysPerMonth.keySet() ){
             for(int j=1;j<=DaysPerMonth.get(i);j++){
                 tmp=numberOfMonth.get(i)*100+j;
@@ -129,7 +128,7 @@ public class Calendar{
                 arrDate =Integer.parseInt((String) comboBox2.getSelectedItem()); // tmp2=arrival date
 
                 depDate=Integer.parseInt((String) comboBox4.getSelectedItem()); // tmp3=departure date
-                int count=0;
+
                 boolean state=rentDays(arrMon,arrDate,depMon,depDate);
                 if(state){
                     JOptionPane.showMessageDialog(null,"You will stay at our facilities from "+arrDate+" of "+ arrMon +" ,until "+depDate+" of "+depMon+"!");

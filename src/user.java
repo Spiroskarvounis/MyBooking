@@ -1,31 +1,35 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 
-public class user{
+
+public class user implements Serializable{
 
 
     private int type, age,id; /* type: 1 for providers, 2 for customers, 3 for admins*/
     private String name, surname, username, password, gender;
-    private JTextField nameField;
-    private JTextField ageField;
-    private JTextField usernameField;
-    private JTextField surnameField;
-    private JComboBox comboBox1;
-    private JComboBox comboBox2;
-    private JPasswordField passwordField1;
-    private JPasswordField passwordConfirmField2;
-    private JButton singupButton;
-    private JPanel userPanel;
+    private transient JTextField nameField;
+    private transient JTextField ageField;
+    private transient JTextField usernameField;
+    private transient JTextField surnameField;
+    private transient JComboBox comboBox1;
+    private transient JComboBox comboBox2;
+    private transient JPasswordField passwordField1;
+    private transient JPasswordField passwordConfirmField2;
+    private transient JButton singupButton;
+    private transient JPanel userPanel;
     JFrame userFrame;
     provider c;
     customer d;
-    Files files;
+    ArrayList<user> login;
 
 
     public user (int id,AccommodationManagement acc){
         this.id=id;
+        user u=this;
         singupButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -47,6 +51,7 @@ public class user{
                         }
                         gender=(String)  comboBox1.getSelectedItem();
                         surname=surnameField.getText();
+                        username=usernameField.getText();
                         password=String.valueOf(passwordField1.getPassword());
                         JOptionPane.showMessageDialog(null,"Successful registration!!!");
                         JOptionPane.getRootFrame().dispose();
@@ -55,13 +60,13 @@ public class user{
 
                         if(getType()==1){
                             c= new provider(getUsername(),id);
-                            JOptionPane.showMessageDialog(null,"You are now logged in as a provider.Press okey to continue.");
+                            JOptionPane.showMessageDialog(null,"You are now logged in as a provider.Press okay to continue.");
                             JOptionPane.getRootFrame().dispose();
                             c.CreateFrame();
                         }
                         else  if(getType()==2){
                             d=new customer(acc.getProviders(),id);
-                            JOptionPane.showMessageDialog(null,"You are now logged in as a customer.Press okey to continue.");
+                            JOptionPane.showMessageDialog(null,"You are now logged in as a customer.Press okay to continue.");
                             JOptionPane.getRootFrame().dispose();
                             d.CreateFrame();
                         }
@@ -76,13 +81,39 @@ public class user{
                     JOptionPane.showMessageDialog(null,"Enter valid information.Try again.");
                     JOptionPane.getRootFrame().dispose();
                 }
+/*
+                login.add(u);
+                for (user user : login) {
+                    System.out.println(user.getUsername() + " = " + user.getPassword());
+                }
+                System.out.println("-----------------------------------------");
+                SaveUsers(login,"users_info.bin");
+
+ */
             }
 
         });
         CreateFrameUser();
-        //login_info.put(tmp.getUsername(), tmp.getPassword());
-        //System.out.println(this.getUsername() +", "+ this.getPassword());
-        //files.SaveUsers(login_info);
+
+    }
+/*
+    public void SaveUsers(ArrayList<user> us, String filename){
+
+        try (ObjectOutputStream oos = new ObjectOutputStream (new FileOutputStream(filename))){
+            oos.writeObject(us);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+ */
+
+    public void setLogin(ArrayList<user> login){
+        login = new ArrayList<>();
+        this.login=login;
+    }
+    public ArrayList<user> getLogin(){
+        return login;
     }
 
     /**
@@ -107,7 +138,6 @@ public class user{
         this.gender = gender;
         this.username = username;
         this.password = password;
-        files=new Files();
 
     }
 
@@ -185,6 +215,7 @@ public class user{
      * a function that shows the characteristics of a specific user
      */
 
+    /*
     public void showUser(){
         System.out.println("Name: "+name);
         System.out.println("Surname: "+surname);
@@ -200,6 +231,8 @@ public class user{
             System.out.println("Type: Admin");
         System.out.println("\n");
     }
+
+     */
     public void CreateFrameUser(){
         userFrame=new JFrame("Create a new user.");
         userFrame.add(userPanel);

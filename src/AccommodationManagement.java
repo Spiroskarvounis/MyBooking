@@ -1,34 +1,39 @@
+import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 
-public class AccommodationManagement {
+public class AccommodationManagement implements Serializable {
     // an array list that contains all the providers and each provider has it own accommodation
     public static ArrayList<provider> providers;
-    Files files;
+
 
     /**
      * default constructor
      */
     public AccommodationManagement(){
         providers=new ArrayList<>();
-        files=new Files();
+
     }
+
 
     public  ArrayList<provider> getProviders() {
         return providers;
     }
-
+/*
     public  void setProviders(ArrayList<provider> providers) {
         AccommodationManagement.providers = providers;
     }
 
+ */
+
     public void addProvider(provider tmp){
         providers.add(tmp);
+        //SaveProviders(providers);
     }
 
     /**
      * shows the information of each building of each provider
      */
+    /*
     public void showBuildingsPerProvider(){
         for(provider i:providers){
             System.out.println("This providers offers:");
@@ -36,6 +41,8 @@ public class AccommodationManagement {
             System.out.println("\n");
         }
      }
+
+
 
     public void showSpecificTypeOfAccommodation(String a){
         for(provider i:providers){
@@ -51,11 +58,14 @@ public class AccommodationManagement {
                     }
                 }
             }
+
+
         }
 
 
 
     }
+    */
 
 
 
