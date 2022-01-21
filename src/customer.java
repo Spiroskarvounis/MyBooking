@@ -57,7 +57,7 @@ public class customer {
             public void actionPerformed(ActionEvent e) {
                 custFrame.dispose();
                 Interface b=new Interface();
-                b.CreateFrame();
+
             }
         });
     }
@@ -85,7 +85,7 @@ public class customer {
             public void actionPerformed(ActionEvent e) {
                 custFrame.dispose();
                 Interface b=new Interface();
-                b.CreateFrame();
+
             }
         });
 

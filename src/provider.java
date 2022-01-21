@@ -59,6 +59,7 @@ public class provider {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frameProv.dispose();
+                Interface a=new Interface();
             }
         });
     }
@@ -101,7 +102,7 @@ public class provider {
             public void actionPerformed(ActionEvent e) {
                 frameProv.dispose();
                 Interface b=new Interface();
-                b.CreateFrame();
+
 
             }
 

@@ -19,7 +19,9 @@ public class admin {
         Logout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 adminFrame.dispose();
+                Interface a=new Interface();
             }
         });
         informationButton.addActionListener(new ActionListener() {
