@@ -10,11 +10,7 @@ public class Interface {
     HashMap<String,String> login_info = new HashMap<>();
     ArrayList <customer> customers ;
     ArrayList <admin> admins;
-
-
-    Scanner input = new Scanner(System.in);
-    int age, type, choice,id=0;
-    String in, gender, name, surname, username, password;
+    int id=0;
     private JButton logInButtton;
     private JTextField usernanameField;
     private JPasswordField passwordField1;
